@@ -1,4 +1,3 @@
-import { t } from "@lingui/macro";
 import { useTheme } from "@material-ui/core/styles";
 import DiffusionChart from "src/components/Chart/DiffusionChart";
 import { formatCurrency, trim } from "src/helpers";
@@ -48,7 +47,7 @@ export const MarketValueGraph = () => {
         ["#4E1F71", "#4E1F71"],
         ["#8AECCD", "#8AECCD"],
       ]}
-      headerText={t`Market Value of Treasury Assets`}
+      headerText={headerText().coin}
       headerSubText={`${dashboardData && formatCurrency(dashboardData[0].treasuryDaiMarketValue)}`}
       bulletpointColors={bulletpoints.coin}
       itemNames={tooltipItems.coin}
@@ -69,7 +68,7 @@ export const RunwayAvailableGraph = () => {
       dataKey={dataKey().runway}
       color={theme.palette.text.primary}
       stroke={["#5d91f9"]}
-      headerText={t`Runway Available`}
+      headerText={headerText().runway}
       headerSubText={`${data && trim(data[0].runwayCurrent, 1)} Days`}
       dataFormat="days"
       bulletpointColors={bulletpoints.runway}

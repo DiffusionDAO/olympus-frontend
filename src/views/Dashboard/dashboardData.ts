@@ -178,6 +178,8 @@ export const dataKey = () => {
 export const headerText = () => {
   return {
     tvl: t`TVL`,
+    coin: t`Market`,
+    runway: t`Runway Available`,
   };
 };
 

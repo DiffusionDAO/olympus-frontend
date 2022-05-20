@@ -462,16 +462,31 @@ function DiffusionChart({
         >
           <Box display="flex" width="90%" alignItems="center">
             <Typography
-              variant="h6"
-              color="textSecondary"
+              variant="h5"
               className="card-title-text"
-              style={{ fontWeight: 400, overflow: "hidden" }}
+              style={{ fontWeight: 700, overflow: "hidden", color: "#6495f9" }}
             >
               {headerText}
             </Typography>
-            <Typography variant={"h6"} color="textSecondary">
+            <Typography variant={"h6"} style={{ color: "rgb(153, 153, 153)", fontWeight: 500 }}>
               <InfoTooltip message={infoTooltipMessage} />
             </Typography>
+            {loading ? (
+              <Skeleton variant="text" width={100} />
+            ) : (
+              <Box display="flex">
+                <Typography
+                  variant="h6"
+                  className="card-sub-title-fixation-text"
+                  style={{ fontWeight: 400, color: "rgb(100, 149, 249)" }}
+                >
+                  {t`Today`}
+                </Typography>
+                <Typography variant="h5" style={{ fontWeight: 600, marginRight: 5, color: "rgb(43, 133, 228)" }}>
+                  {headerSubText}
+                </Typography>
+              </Box>
+            )}
           </Box>
           {/* could make this svgbutton */}
 
@@ -491,18 +506,6 @@ function DiffusionChart({
             headerSubText={headerSubText}
           />
         </Box>
-        {loading ? (
-          <Skeleton variant="text" width={100} />
-        ) : (
-          <Box display="flex">
-            <Typography variant="h4" style={{ fontWeight: 600, marginRight: 5 }}>
-              {headerSubText}
-            </Typography>
-            <Typography variant="h4" color="textSecondary" style={{ fontWeight: 400 }}>
-              {type !== "multi" && t`Today`}
-            </Typography>
-          </Box>
-        )}
       </div>
       <Box width="100%" minHeight={260} minWidth={310} className="ohm-chart">
         {loading || (data && data.length > 0) ? (
