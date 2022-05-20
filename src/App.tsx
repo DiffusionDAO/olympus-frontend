@@ -44,7 +44,7 @@ import { dark as darkTheme } from "./themes/dark.js";
 import { girth as gTheme } from "./themes/girth.js";
 import { light as lightTheme } from "./themes/light.js";
 import { multifarmDarkTheme, multifarmLightTheme } from "./themes/multifarm";
-import { Bond, Dashboard, Give, Stake, TreasuryDashboard, V1Stake, Wrap, Zap } from "./views";
+import { Bond, Dashboard, Give, Stake, V1Stake, Wrap, Zap } from "./views";
 import NotFound from "./views/404/NotFound";
 
 // 😬 Sorry for all the console logging
@@ -321,7 +321,7 @@ function App() {
             )}
 
             <Routes>
-              <Route path="/" element={<Navigate to="/stake" />} />
+              <Route path="/" element={<Navigate to="/dashboard" />} />
               <Route
                 path="/stake"
                 element={
@@ -349,8 +349,7 @@ function App() {
               <Route path="/wrap" element={<Wrap />} />
               <Route path="/zap" element={<Zap />} />
               <Route path="/bonds/*" element={<Bond />} />
-              <Route path="/dashboard-new" element={<Dashboard />} />
-              <Route path="/dashboard/*" element={<TreasuryDashboard />} />
+              <Route path="/dashboard" element={<Dashboard />} />
 
               <Route path={"/info/*"} element={<Wallet open={true} component="info" />} />
               {process.env.REACT_APP_DISABLE_NEWS && (
