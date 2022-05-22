@@ -82,7 +82,7 @@ const renderAreaChart = (
         />
       }
     />
-    <Area dataKey={dataKey[0]} stroke="none" fill={`url(#color-${dataKey[0]})`} fillOpacity={1} />
+    <Area type="monotone" dataKey={dataKey[0]} stroke="none" fill={`url(#color-${dataKey[0]})`} fillOpacity={1} />
     {renderExpandedChartStroke(isExpanded, expandedGraphStrokeColor)}
   </AreaChart>
 );
@@ -154,6 +154,7 @@ const renderStackedAreaChart = (
       content={<CustomTooltip bulletpointColors={bulletpointColors} itemNames={itemNames} itemType={itemType} />}
     />
     <Area
+      type="monotone"
       dataKey={dataKey[0]}
       stroke={stroke ? stroke[0] : "none"}
       fill={`url(#color-${dataKey[0]})`}
@@ -161,6 +162,7 @@ const renderStackedAreaChart = (
       stackId="1"
     />
     <Area
+      type="monotone"
       dataKey={dataKey[1]}
       stroke={stroke ? stroke[1] : "none"}
       fill={`url(#color-${dataKey[1]})`}
@@ -168,6 +170,7 @@ const renderStackedAreaChart = (
       stackId="1"
     />
     <Area
+      type="monotone"
       dataKey={dataKey[2]}
       stroke={stroke ? stroke[2] : "none"}
       fill={`url(#color-${dataKey[2]})`}
@@ -175,6 +178,7 @@ const renderStackedAreaChart = (
       stackId="1"
     />
     <Area
+      type="monotone"
       dataKey={dataKey[3]}
       stroke={stroke ? stroke[3] : "none"}
       fill={`url(#color-${dataKey[3]})`}
@@ -182,6 +186,7 @@ const renderStackedAreaChart = (
       stackId="1"
     />
     <Area
+      type="monotone"
       dataKey={dataKey[4]}
       stroke={stroke ? stroke[4] : "none"}
       fill={`url(#color-${dataKey[4]})`}
@@ -189,6 +194,7 @@ const renderStackedAreaChart = (
       stackId="1"
     />
     <Area
+      type="monotone"
       dataKey={dataKey[5]}
       stroke={stroke ? stroke[5] : "none"}
       fill={`url(#color-${dataKey[5]})`}
@@ -196,6 +202,7 @@ const renderStackedAreaChart = (
       stackId="1"
     />
     <Area
+      type="monotone"
       dataKey={dataKey[6]}
       stroke={stroke ? stroke[6] : "none"}
       fill={`url(#color-${dataKey[6]})`}
@@ -269,10 +276,10 @@ const renderMultiLineChart = (
     <Tooltip
       content={<CustomTooltip bulletpointColors={bulletpointColors} itemNames={itemNames} itemType={itemType} />}
     />
-    <Line dataKey={dataKey[0]} stroke={stroke[0]} dot={false} />;
-    <Line dataKey={dataKey[1]} stroke={stroke[1]} dot={false} />;
-    <Line dataKey={dataKey[2]} stroke={stroke[2]} dot={false} />;
-    <Line dataKey={dataKey[3]} stroke={stroke[3]} dot={false} />;
+    <Line type="monotone" dataKey={dataKey[0]} stroke={stroke[0]} dot={false} />;
+    <Line type="monotone" dataKey={dataKey[1]} stroke={stroke[1]} dot={false} />;
+    <Line type="monotone" dataKey={dataKey[2]} stroke={stroke[2]} dot={false} />;
+    <Line type="monotone" dataKey={dataKey[3]} stroke={stroke[3]} dot={false} />;
     {renderExpandedChartStroke(isExpanded, expandedGraphStrokeColor)}
   </LineChart>
 );
@@ -471,22 +478,6 @@ function DiffusionChart({
             <Typography variant={"h6"} style={{ color: "rgb(153, 153, 153)", fontWeight: 500 }}>
               <InfoTooltip message={infoTooltipMessage} />
             </Typography>
-            {loading ? (
-              <Skeleton variant="text" width={100} />
-            ) : (
-              <Box display="flex">
-                <Typography
-                  variant="h6"
-                  className="card-sub-title-fixation-text"
-                  style={{ fontWeight: 400, color: "rgb(100, 149, 249)" }}
-                >
-                  {t`Today`}
-                </Typography>
-                <Typography variant="h5" style={{ fontWeight: 600, marginRight: 5, color: "rgb(43, 133, 228)" }}>
-                  {headerSubText}
-                </Typography>
-              </Box>
-            )}
           </Box>
           {/* could make this svgbutton */}
 
@@ -506,6 +497,22 @@ function DiffusionChart({
             headerSubText={headerSubText}
           />
         </Box>
+        {loading ? (
+          <Skeleton variant="text" width={100} />
+        ) : (
+          <Box display="flex">
+            <Typography
+              variant="h6"
+              className="card-sub-title-fixation-text"
+              style={{ fontWeight: 400, color: "rgb(100, 149, 249)" }}
+            >
+              {t`Today`}
+            </Typography>
+            <Typography variant="h5" style={{ fontWeight: 600, marginRight: 5, color: "rgb(43, 133, 228)" }}>
+              {headerSubText}
+            </Typography>
+          </Box>
+        )}
       </div>
       <Box width="100%" minHeight={260} minWidth={310} className="ohm-chart">
         {loading || (data && data.length > 0) ? (

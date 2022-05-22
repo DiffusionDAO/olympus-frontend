@@ -31,6 +31,12 @@ const useStyles = makeStyles(theme => ({
       display: "none",
     },
   },
+  menuText: {
+    marginLeft: "0px",
+    [theme.breakpoints.up(981)]: {
+      marginLeft: "320px",
+    },
+  },
 }));
 
 interface TopBarProps {
@@ -43,6 +49,14 @@ function TopBar({ theme, toggleTheme, handleDrawerToggle }: TopBarProps) {
   const { connected } = useWeb3Context();
   const classes = useStyles();
   const location = useLocation();
+  const routeMap: any = {
+    "/dashboard": "Dashobard",
+    "/bonds/inverse": "Bonds",
+    "/stake": "Stake",
+    "/zap": "Zap",
+    "/give": "Give",
+    "/wrap": "Wrap",
+  };
 
   return (
     <AppBar position="sticky" className={classes.appBar} elevation={0}>
@@ -58,6 +72,13 @@ function TopBar({ theme, toggleTheme, handleDrawerToggle }: TopBarProps) {
         >
           <SvgIcon component={MenuIcon} />
         </Button>
+        <Typography
+          variant="h3"
+          className={classes.menuText}
+          style={{ fontWeight: 700, overflow: "hidden", color: "#fff" }}
+        >
+          {routeMap[location.pathname]}
+        </Typography>
         <Box display="flex" alignItems="center">
           <Link to={"/wallet"} state={{ prevPath: location.pathname }} style={{ marginRight: "0px" }}>
             <Button variant="contained" color="secondary">

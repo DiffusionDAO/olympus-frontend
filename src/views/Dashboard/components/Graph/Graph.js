@@ -10,8 +10,6 @@ export const Graph = ({ children }) => <>{children}</>;
 
 export const TVLGraph = () => {
   const theme = useTheme();
-  // const { data } = useProtocolMetrics();
-
   return (
     <DiffusionChart
       type="bar"
@@ -31,8 +29,6 @@ export const TVLGraph = () => {
 
 export const MarketValueGraph = () => {
   const theme = useTheme();
-  // const { data } = useProtocolMetrics();
-
   return (
     <DiffusionChart
       type="stack"
@@ -47,6 +43,25 @@ export const MarketValueGraph = () => {
         ["#4E1F71", "#4E1F71"],
         ["#8AECCD", "#8AECCD"],
       ]}
+      headerText={headerText().coin}
+      headerSubText={`${dashboardData && formatCurrency(dashboardData[0].treasuryDaiMarketValue)}`}
+      bulletpointColors={bulletpoints.coin}
+      itemNames={tooltipItems.coin}
+      itemType={itemType.dollar}
+      infoTooltipMessage={tooltipInfoMessages().mvt}
+      expandedGraphStrokeColor={theme.palette.graphStrokeColor}
+    />
+  );
+};
+
+export const AreaGraph = () => {
+  const theme = useTheme();
+  return (
+    <DiffusionChart
+      type="area"
+      data={dashboardData}
+      dataKey={dataKey().coin}
+      stopColor={[["#c2efdb", "#c2efdb"]]}
       headerText={headerText().coin}
       headerSubText={`${dashboardData && formatCurrency(dashboardData[0].treasuryDaiMarketValue)}`}
       bulletpointColors={bulletpoints.coin}
