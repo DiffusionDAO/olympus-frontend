@@ -9,13 +9,13 @@ interface Props {
 }
 export const DataCell: React.FC<Props> = props => {
   return (
-    <Paper className="data-cell-box" style={props.style}>
+    <Paper className="data-box" style={props.style}>
       <div>
-        <div>{props.title}</div>
-        <h3>{props.data}</h3>
+        <div className="data-cell-title">{props.title}</div>
+        <div className="data-cell-content">{props.data}</div>
       </div>
       {props.imgUrl && (
-        <div>
+        <div className="data-cell-img">
           <img src={props.imgUrl} />
         </div>
       )}

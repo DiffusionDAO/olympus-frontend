@@ -33,13 +33,31 @@ const Dashboard = () => {
               <Grid item lg={9} md={9} sm={12} xs={12}>
                 <Grid container spacing={2}>
                   <Grid item lg={12} md={12} sm={12} xs={12}>
-                    <DataCell title="TVL" data="123" />
+                    <Paper className="cell-box cell-bg1">
+                      <div className="cell-wrap item1">
+                        <div>
+                          <DataCell title="TVL" data="$123.22M" style={{ fontSize: "32px" }} />
+                        </div>
+                        <div className="has-border">
+                          <DataCell title="Total circulation" data="$123.22M" />
+                          <DataCell title="Single currency internal savings fund" data="$123.22M" />
+                        </div>
+                        <div>
+                          <DataCell title="Reserve fund" data="$123.22M" />
+                          <DataCell title="Reserve fund" data="$123.22M" />
+                        </div>
+                      </div>
+                    </Paper>
                   </Grid>
                   <Grid item lg={4} md={4} sm={12} xs={12}>
-                    <DataCell title="XXX" data="123" />
+                    <Paper className="cell-box">
+                      <DataCell title="XXX" data="123" />
+                    </Paper>
                   </Grid>
                   <Grid item lg={8} md={8} sm={12} xs={12}>
-                    <DataCell title="XXX" data="123" />
+                    <Paper className="cell-box">
+                      <DataCell title="XXX" data="123" />
+                    </Paper>
                   </Grid>
                 </Grid>
               </Grid>
@@ -47,10 +65,14 @@ const Dashboard = () => {
               <Grid item lg={3} md={3} sm={12} xs={12}>
                 <Grid container spacing={2}>
                   <Grid item lg={12} md={12} sm={12} xs={12}>
-                    <DataCell title="XXX" data="123" style={{ height: "300px" }} />
+                    <Paper className="cell-box" style={{ height: "300px" }}>
+                      <DataCell title="XXX" data="123" />
+                    </Paper>
                   </Grid>
                   <Grid item lg={12} md={12} sm={12} xs={12}>
-                    <DataCell title="XXX" data="123" style={{ height: "100px" }} />
+                    <Paper className="cell-box" style={{ height: "100px" }}>
+                      <DataCell title="XXX" data="123" />
+                    </Paper>
                   </Grid>
                 </Grid>
               </Grid>
