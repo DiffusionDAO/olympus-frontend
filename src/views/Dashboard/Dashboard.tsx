@@ -5,6 +5,7 @@ import { Container, Grid, useMediaQuery } from "@material-ui/core";
 import { Metric, Paper } from "@olympusdao/component-library";
 import { memo } from "react";
 
+import { DataCell } from "./components/DataCell/DataCell";
 import { AreaGraph, MarketValueGraph, RunwayAvailableGraph, TVLGraph } from "./components/Graph/Graph";
 
 const sharedMetricProps: PropsOf<typeof Metric> = { labelVariant: "h6", metricVariant: "h5" };
@@ -32,13 +33,13 @@ const Dashboard = () => {
               <Grid item lg={9} md={9} sm={12} xs={12}>
                 <Grid container spacing={2}>
                   <Grid item lg={12} md={12} sm={12} xs={12}>
-                    <div style={{ backgroundColor: "white", width: "100%", height: "200px", color: "#000" }}>1</div>
+                    <DataCell title="TVL" data="123" />
                   </Grid>
                   <Grid item lg={4} md={4} sm={12} xs={12}>
-                    <div style={{ backgroundColor: "white", width: "100%", height: "200px", color: "#000" }}>2</div>
+                    <DataCell title="XXX" data="123" />
                   </Grid>
                   <Grid item lg={8} md={8} sm={12} xs={12}>
-                    <div style={{ backgroundColor: "white", width: "100%", height: "200px", color: "#000" }}>3</div>
+                    <DataCell title="XXX" data="123" />
                   </Grid>
                 </Grid>
               </Grid>
@@ -46,10 +47,10 @@ const Dashboard = () => {
               <Grid item lg={3} md={3} sm={12} xs={12}>
                 <Grid container spacing={2}>
                   <Grid item lg={12} md={12} sm={12} xs={12}>
-                    <div style={{ backgroundColor: "white", width: "100%", height: "300px", color: "#000" }}>4</div>
+                    <DataCell title="XXX" data="123" style={{ height: "300px" }} />
                   </Grid>
                   <Grid item lg={12} md={12} sm={12} xs={12}>
-                    <div style={{ backgroundColor: "white", width: "100%", height: "100px", color: "#000" }}>5</div>
+                    <DataCell title="XXX" data="123" style={{ height: "100px" }} />
                   </Grid>
                 </Grid>
               </Grid>

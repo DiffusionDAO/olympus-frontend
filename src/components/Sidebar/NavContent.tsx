@@ -47,7 +47,7 @@ const NavContent: React.VFC = () => {
                 <>
                   <NavItem to="/dashboard" icon="dashboard" label={t`Dashboard`} />
 
-                  {/* <NavItem to="/dashboard" icon="dashboard" label={t`Dashboard`} /> */}
+                  <NavItem to="/dashboard-new" icon="dashboard" label={t`Dashboard`} />
 
                   <NavItem to="/bonds" icon="bond" label={t`Bond`}>
                     <Bonds />

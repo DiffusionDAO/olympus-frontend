@@ -63,6 +63,15 @@
   &::-webkit-scrollbar {
     display: none !important;
   }
+  // 主要数据指标卡片
+  .data-cell-box {
+    width: 100%;
+    height: 200px;
+    margin: auto;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+  }
 
   .ohm-card {
     max-width: unset !important;
