@@ -47,9 +47,7 @@ const Dashboard = () => {
                         <Grid item lg={4} md={4} sm={12} xs={12}>
                           <div className="cell-sub-item">
                             <DataCell title="TVL" data="$123.22M" style={{ fontSize: "32px" }} />
-                            <div>
-                              <img src={tvlSVG} style={{ width: "50%", float: "right" }} />
-                            </div>
+                            <DataCell title="" data="" imgUrl={tvlSVG} />
                           </div>
                         </Grid>
                         <Grid item lg={4} md={4} sm={12} xs={12}>
@@ -154,7 +152,7 @@ const Dashboard = () => {
                   <Grid item lg={12} md={12} sm={12} xs={12}>
                     <div className="cell-box cell-item5">
                       <div className="cell-sub-item">
-                        <DataCell title="Reserve fund" data="$123.22M" imgUrl={rzSVG} imgStyle={{ width: "120px" }} />
+                        <DataCell title="Reserve fund" data="$123.22M" imgUrl={rzSVG} />
                       </div>
                     </div>
                   </Grid>

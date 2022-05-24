@@ -19,6 +19,13 @@
     text-decoration: none;
   }
   button {
+    padding: 6px 10px;
+    background-image: url("../../assets/images/layout/top-bar-item-bg.svg") !important;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  button:focus{
+    padding: 6px 10px;
     background-image: url("../../assets/images/layout/top-bar-item-bg.svg") !important;
     background-repeat: no-repeat;
     background-size: cover;

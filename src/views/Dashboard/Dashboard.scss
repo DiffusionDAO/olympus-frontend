@@ -204,7 +204,8 @@
       .data-cell-img {
         height: 100%;
         > img {
-          width: 100%;
+          width: 100px;
+          height: 100px;
           margin: auto;
         }
       }
@@ -534,6 +535,15 @@
       color: var(--ohm-gold);
       font-weight: 400;
       border-color: var(--ohm-gold);
+    }
+  }
+}
+@media (max-width: 960px) {
+  #dashboard-view {
+    .cell-box {
+      &.cell-item1 {
+        background-image: url("../../assets/images/dashboard/cell-bg1-mobile.svg");
+      }
     }
   }
 }
