@@ -9,6 +9,7 @@
     margin: 6px;
     min-width: fit-content !important;
     min-height: 40px !important;
+    background-color: rgb(255 255 255 / 0%);
     &#hamburger {
       padding: 11px !important;
     }
@@ -16,6 +17,11 @@
       padding: 9.5px !important;
     }
     text-decoration: none;
+  }
+  button {
+    background-image: url("../../assets/images/layout/top-bar-item-bg.svg") !important;
+    background-repeat: no-repeat;
+    background-size: cover;
   }
 }
 .tablet .dapp-topbar {

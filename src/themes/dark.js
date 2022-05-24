@@ -21,11 +21,11 @@ const darkTheme = {
     radial-gradient(circle at 10% 0%, rgba(187, 211, 204, 0.33), rgba(187,211,204,0) 35%),
     radial-gradient(circle at 11% 100%, rgba(131, 165, 203, 0.3), rgba(131, 165, 203, 0) 30%)
     `,
-  paperBg: "linear-gradient(237.43deg, #2B313D -12.81%, #171A20 132.72%)",
+  paperBg: "rgba(154, 180, 255, 0.1)",
   modalBg: "#24242699",
   popoverBg: "rgba(54, 56, 64, 0.99)",
-  menuBg: "linear-gradient(237.43deg, #2B313D -12.81%, #171A20 132.72%)",
-  backdropBg: "linear-gradient(237.43deg, #2B313D -12.81%, #171A20 132.72%)",
+  menuBg: "rgba(154, 180, 255, 0.1)",
+  backdropBg: "rgba(154, 180, 255, 0.1)",
   largeTextColor: "#F4D092",
   activeLinkColor: "#F5DDB4",
   activeLinkSvgColor:

@@ -15,7 +15,7 @@ import WalletAddressEns from "../TopBar/Wallet/WalletAddressEns";
 
 const useStyles = makeStyles(theme => ({
   gray: {
-    color: theme.colors.gray[90],
+    color: theme.colors.gray[10],
   },
 }));
 

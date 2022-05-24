@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="48px" height="48px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>切片</title>
+    <defs>
+        <linearGradient x1="22.7355957%" y1="5.5480957%" x2="11.7218018%" y2="84.4421387%" id="linearGradient-1">
+            <stop stop-color="#3900FF" offset="0%"></stop>
+            <stop stop-color="#F576FF" stop-opacity="0" offset="100%"></stop>
+        </linearGradient>
+        <rect id="path-2" x="0" y="0" width="48" height="48" rx="16"></rect>
+        <filter x="-5.2%" y="-5.2%" width="110.4%" height="110.4%" filterUnits="objectBoundingBox" id="filter-3">
+            <feGaussianBlur stdDeviation="2.5" in="SourceAlpha" result="shadowBlurInner1"></feGaussianBlur>
+            <feOffset dx="0" dy="0" in="shadowBlurInner1" result="shadowOffsetInner1"></feOffset>
+            <feComposite in="shadowOffsetInner1" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="shadowInnerInner1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0.776470588   0 0 0 0 0.356862745   0 0 0 0 1  0 0 0 0.500792177 0" type="matrix" in="shadowInnerInner1"></feColorMatrix>
+        </filter>
+        <rect id="path-4" x="9" y="9" width="30" height="30" rx="15"></rect>
+        <filter x="-93.3%" y="-86.7%" width="286.7%" height="286.7%" filterUnits="objectBoundingBox" id="filter-5">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="9" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.910729895   0 0 0 0 0   0 0 0 0 1  0 0 0 1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="dashboard" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="w-Dashboard" transform="translate(-1296.000000, -32.000000)">
+            <g id="编组-6" transform="translate(280.000000, 32.000000)">
+                <g id="导航/顶部悬浮容器" transform="translate(1016.000000, 0.000000)">
+                    <g id="矩形" fill-rule="nonzero">
+                        <use fill-opacity="0.278214" fill="#000000" xlink:href="#path-2"></use>
+                        <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-2"></use>
+                        <rect stroke="url(#linearGradient-1)" stroke-width="1" stroke-linejoin="square" x="0.5" y="0.5" width="47" height="47" rx="16"></rect>
+                    </g>
+                    <g id="矩形" opacity="0.651018415" fill="black" fill-opacity="1">
+                        <use filter="url(#filter-5)" xlink:href="#path-4"></use>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
