@@ -5,8 +5,9 @@ import { Container, Grid, useMediaQuery } from "@material-ui/core";
 import { Paper } from "@olympusdao/component-library";
 import { memo } from "react";
 
-import cfSVG from "../../assets/images/dashboard/cf.svg";
-import diSVG from "../../assets/images/dashboard/di.svg";
+import cellBgPNG from "../../assets/images/dashboard/cell-bg4.png";
+import cfPNG from "../../assets/images/dashboard/cf.png";
+import diPNG from "../../assets/images/dashboard/di.png";
 import drSVG from "../../assets/images/dashboard/dr.svg";
 import hsSVG from "../../assets/images/dashboard/hs.svg";
 import rfSVG from "../../assets/images/dashboard/rf.svg";
@@ -131,10 +132,14 @@ const Dashboard = () => {
               <Grid item lg={3} md={3} sm={12} xs={12}>
                 <Grid container spacing={2}>
                   <Grid item lg={12} md={12} sm={12} xs={12}>
-                    <div className="cell-box cell-item4">
+                    <div className="cell-box cell-item4" style={{ position: "relative" }}>
                       <div className="cell-sub-item">
+                        <img
+                          src={cellBgPNG}
+                          style={{ width: "100%", height: "100%", position: "absolute", left: 0, top: 0 }}
+                        />
                         <div className="disvg">
-                          <img src={diSVG} />
+                          <img src={diPNG} style={{ width: "56px", height: "52px" }} />
                         </div>
                         <div className="di-font">Diffusion index</div>
                         <h3 className="di-content">89</h3>
@@ -142,9 +147,9 @@ const Dashboard = () => {
                         <DataCell
                           title="Call fator"
                           data="43"
-                          imgUrl={cfSVG}
+                          imgUrl={cfPNG}
                           titleStyle={{ color: "#ABB6FF" }}
-                          imgStyle={{ height: "85px" }}
+                          imgStyle={{ height: "85px", width: "54px" }}
                         />
                       </div>
                     </div>
