@@ -1,5 +1,5 @@
 import { t, Trans } from "@lingui/macro";
-import { Box, Divider, Link, makeStyles, Paper, SvgIcon, Typography } from "@material-ui/core";
+import { Box, Divider, Link, makeStyles, Paper, Typography } from "@material-ui/core";
 import { Icon, NavItem } from "@olympusdao/component-library";
 import React from "react";
 import { NavLink } from "react-router-dom";
@@ -10,7 +10,7 @@ import { useWeb3Context } from "src/hooks/web3Context";
 import { BondDiscount } from "src/views/Bond/components/BondDiscount";
 import { useLiveBonds } from "src/views/Bond/hooks/useLiveBonds";
 
-import { ReactComponent as OlympusIcon } from "../../assets/icons/olympus-nav-header.svg";
+import logoPNG from "../../assets/images/layout/logo.png";
 import WalletAddressEns from "../TopBar/Wallet/WalletAddressEns";
 
 const useStyles = makeStyles(theme => ({
@@ -30,12 +30,7 @@ const NavContent: React.VFC = () => {
         <div className="dapp-menu-top">
           <Box className="branding-header">
             <Link href="https://olympusdao.finance" target="_blank">
-              <SvgIcon
-                color="primary"
-                viewBox="0 0 151 100"
-                component={OlympusIcon}
-                style={{ minWidth: "151px", minHeight: "98px", width: "151px" }}
-              />
+              <img src={logoPNG} style={{ width: "180px", margin: "20px 0" }} />
             </Link>
 
             <WalletAddressEns />

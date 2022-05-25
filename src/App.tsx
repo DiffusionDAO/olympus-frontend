@@ -1,7 +1,7 @@
 import "./style.scss";
 
 import { i18n } from "@lingui/core";
-import { useMediaQuery } from "@material-ui/core";
+import { Typography, useMediaQuery } from "@material-ui/core";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { ThemeProvider } from "@material-ui/core/styles";
 import { makeStyles } from "@material-ui/core/styles";
@@ -59,6 +59,13 @@ const drawerWidth = 312;
 const transitionDuration = 969;
 
 const useStyles = makeStyles(theme => ({
+  menuText: {
+    marginLeft: "8px",
+    display: "block",
+    [theme.breakpoints.up(981)]: {
+      display: "none",
+    },
+  },
   drawer: {
     [theme.breakpoints.up("md")]: {
       width: drawerWidth,
@@ -104,6 +111,14 @@ function App() {
   const classes = useStyles();
   const [isSidebarExpanded, setIsSidebarExpanded] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const routeMap: any = {
+    "/dashboard": "Dashobard",
+    "/bonds/inverse": "Bonds",
+    "/stake": "Stake",
+    "/zap": "Zap",
+    "/give": "Give",
+    "/wrap": "Wrap",
+  };
 
   const { address, connect, connectionError, hasCachedProvider, provider, connected, networkId, providerInitialized } =
     useWeb3Context();
@@ -307,6 +322,13 @@ function App() {
           <StagingNotification />
           <Messages />
           <TopBar theme={theme} toggleTheme={toggleTheme} handleDrawerToggle={handleDrawerToggle} />
+          <Typography
+            variant="h3"
+            className={classes.menuText}
+            style={{ fontWeight: 700, overflow: "hidden", color: "#fff" }}
+          >
+            {routeMap[location.pathname]}
+          </Typography>
           <nav className={classes.drawer}>
             {isSmallerScreen ? (
               <NavDrawer mobileOpen={mobileOpen} handleDrawerToggle={handleDrawerToggle} />

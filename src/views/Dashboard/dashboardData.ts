@@ -56,7 +56,7 @@ export const bulletpoints = {
     {
       right: 20,
       top: -12,
-      background: "linear-gradient(180deg, #768299 -10%, #98B3E9 100%)",
+      background: "#0031FF",
     },
   ],
   coin: [
@@ -158,7 +158,7 @@ export const bulletpoints = {
 };
 
 export const tooltipItems = {
-  tvl: [t`Total Value Deposited`],
+  tvl: [t`Tvl`],
   coin: ["DAI", "FRAX"],
   rfv: ["DAI", "FRAX", "LUSD", "UST"],
   holder: ["OHMies"],

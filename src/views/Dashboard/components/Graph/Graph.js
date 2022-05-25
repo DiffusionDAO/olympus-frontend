@@ -8,17 +8,28 @@ import { dashboardData } from "./MockData";
 
 export const Graph = ({ children }) => <>{children}</>;
 
+const menuItemData = [
+  { label: "24h", value: "24h" },
+  { label: "14d", value: "14d" },
+  { label: "30d", value: "30d" },
+  { label: "90d", value: "90d" },
+  { label: "180d", value: "180d" },
+  { label: "1year", value: "1year" },
+  { label: "max", value: "max" },
+];
+
 export const TVLGraph = () => {
   const theme = useTheme();
   return (
     <DiffusionChart
       type="bar"
       data={dashboardData}
+      menuItemData={menuItemData}
       itemType={itemType.dollar}
       itemNames={tooltipItems.tvl}
       dataKey={dataKey().tvl}
       headerText={headerText().tvl}
-      stroke={["#6495f9"]}
+      stroke={["#0031FF"]}
       bulletpointColors={bulletpoints.tvl}
       infoTooltipMessage={tooltipInfoMessages().tvl}
       expandedGraphStrokeColor={theme.palette.graphStrokeColor}

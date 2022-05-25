@@ -10,6 +10,7 @@ import { ReactComponent as WalletIcon } from "src/assets/icons/wallet.svg";
 import { useWeb3Context } from "src/hooks";
 
 import { ReactComponent as MenuIcon } from "../../assets/icons/hamburger.svg";
+import logoPNG from "../../assets/images/layout/logo.png";
 import { locales, selectLocale } from "../../locales";
 
 const useStyles = makeStyles(theme => ({
@@ -30,10 +31,16 @@ const useStyles = makeStyles(theme => ({
       display: "none",
     },
   },
-  menuText: {
-    marginLeft: "0px",
+  menuLogo: {
     [theme.breakpoints.up(981)]: {
-      marginLeft: "320px",
+      display: "none",
+    },
+  },
+  menuText: {
+    display: "none",
+    marginLeft: "320px",
+    [theme.breakpoints.up(981)]: {
+      display: "block",
     },
   },
 }));
@@ -60,17 +67,6 @@ function TopBar({ theme, toggleTheme, handleDrawerToggle }: TopBarProps) {
   return (
     <AppBar position="sticky" className={classes.appBar} elevation={0}>
       <Toolbar disableGutters className="dapp-topbar">
-        <Button
-          id="hamburger"
-          aria-label="open drawer"
-          size="large"
-          variant="contained"
-          color="secondary"
-          onClick={handleDrawerToggle}
-          className={classes.menuButton}
-        >
-          <SvgIcon component={MenuIcon} />
-        </Button>
         <Typography
           variant="h3"
           className={classes.menuText}
@@ -78,6 +74,9 @@ function TopBar({ theme, toggleTheme, handleDrawerToggle }: TopBarProps) {
         >
           {routeMap[location.pathname]}
         </Typography>
+        <div className={classes.menuLogo}>
+          <img src={logoPNG} style={{ height: "40px", marginLeft: "8px" }} />
+        </div>
         <Box display="flex" alignItems="center">
           <Link to={"/wallet"} state={{ prevPath: location.pathname }} style={{ marginRight: "0px" }}>
             <Button variant="contained" color="secondary">
@@ -91,6 +90,17 @@ function TopBar({ theme, toggleTheme, handleDrawerToggle }: TopBarProps) {
             onLocaleChange={selectLocale}
             label={t`Change locale`}
           />
+          <Button
+            id="hamburger"
+            aria-label="open drawer"
+            size="large"
+            variant="contained"
+            color="secondary"
+            onClick={handleDrawerToggle}
+            className={classes.menuButton}
+          >
+            <SvgIcon component={MenuIcon} />
+          </Button>
         </Box>
       </Toolbar>
     </AppBar>

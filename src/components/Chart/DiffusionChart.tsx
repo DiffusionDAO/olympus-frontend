@@ -1,7 +1,7 @@
 import "./chart.scss";
 
 import { t } from "@lingui/macro";
-import { Box, CircularProgress, SvgIcon, Typography } from "@material-ui/core";
+import { Box, CircularProgress, MenuItem, Select, SvgIcon, Typography } from "@material-ui/core";
 import { Skeleton } from "@material-ui/lab";
 import { InfoTooltip } from "@olympusdao/component-library";
 import { CSSProperties, useEffect, useState } from "react";
@@ -22,7 +22,7 @@ import { CategoricalChartProps } from "recharts/types/chart/generateCategoricalC
 import { ReactComponent as Fullscreen } from "src/assets/icons/fullscreen.svg";
 import { formatCurrency, trim } from "src/helpers";
 
-import CustomTooltip from "./CustomTooltip";
+import CustomDiffusionTooltip from "./CustomDiffusionTooltip";
 import ExpandedChart from "./ExpandedChart";
 
 const tickCount = 3;
@@ -31,6 +31,11 @@ const expandedTickCount = 5;
 const renderExpandedChartStroke = (isExpanded: boolean, color: string) => {
   return isExpanded ? <CartesianGrid vertical={false} stroke={color} /> : "";
 };
+
+interface MenuItemObj {
+  label: string;
+  value: string | number;
+}
 
 const renderAreaChart = (
   data: any[],
@@ -41,10 +46,8 @@ const renderAreaChart = (
   bulletpointColors: CSSProperties[],
   itemNames: string[],
   itemType: string,
-  isStaked: boolean,
   isExpanded: boolean,
   expandedGraphStrokeColor: string,
-  isPOL: boolean,
   margin: CategoricalChartProps["margin"],
 ) => (
   <AreaChart data={data} margin={margin}>
@@ -73,13 +76,7 @@ const renderAreaChart = (
     />
     <Tooltip
       content={
-        <CustomTooltip
-          bulletpointColors={bulletpointColors}
-          itemNames={itemNames}
-          itemType={itemType}
-          isStaked={isStaked}
-          isPOL={isPOL}
-        />
+        <CustomDiffusionTooltip bulletpointColors={bulletpointColors} itemNames={itemNames} itemType={itemType} />
       }
     />
     <Area type="monotone" dataKey={dataKey[0]} stroke="none" fill={`url(#color-${dataKey[0]})`} fillOpacity={1} />
@@ -151,7 +148,9 @@ const renderStackedAreaChart = (
     />
     <Tooltip
       formatter={(value: string) => trim(parseFloat(value), 2)}
-      content={<CustomTooltip bulletpointColors={bulletpointColors} itemNames={itemNames} itemType={itemType} />}
+      content={
+        <CustomDiffusionTooltip bulletpointColors={bulletpointColors} itemNames={itemNames} itemType={itemType} />
+      }
     />
     <Area
       type="monotone"
@@ -242,7 +241,9 @@ const renderLineChart = (
       allowDataOverflow={false}
     />
     <Tooltip
-      content={<CustomTooltip bulletpointColors={bulletpointColors} itemNames={itemNames} itemType={itemType} />}
+      content={
+        <CustomDiffusionTooltip bulletpointColors={bulletpointColors} itemNames={itemNames} itemType={itemType} />
+      }
     />
     <Line type="monotone" dataKey={dataKey[0]} stroke={stroke ? stroke[0] : "none"} color={color} dot={false} />;
     {renderExpandedChartStroke(isExpanded, expandedGraphStrokeColor)}
@@ -274,7 +275,9 @@ const renderMultiLineChart = (
       allowDataOverflow={false}
     />
     <Tooltip
-      content={<CustomTooltip bulletpointColors={bulletpointColors} itemNames={itemNames} itemType={itemType} />}
+      content={
+        <CustomDiffusionTooltip bulletpointColors={bulletpointColors} itemNames={itemNames} itemType={itemType} />
+      }
     />
     <Line type="monotone" dataKey={dataKey[0]} stroke={stroke[0]} dot={false} />;
     <Line type="monotone" dataKey={dataKey[1]} stroke={stroke[1]} dot={false} />;
@@ -309,9 +312,11 @@ const renderBarChart = (
       tickFormatter={number => (number !== 0 ? number : "")}
     />
     <Tooltip
-      content={<CustomTooltip bulletpointColors={bulletpointColors} itemNames={itemNames} itemType={itemType} />}
+      content={
+        <CustomDiffusionTooltip bulletpointColors={bulletpointColors} itemNames={itemNames} itemType={itemType} />
+      }
     />
-    <Bar dataKey={dataKey[0]} fill={stroke[0]} />
+    <Bar dataKey={dataKey[0]} fill={stroke[0]} radius={4} maxBarSize={18} />
     {renderExpandedChartStroke(isExpanded, expandedGraphStrokeColor)}
   </BarChart>
 );
@@ -330,16 +335,15 @@ function DiffusionChart({
   bulletpointColors,
   itemNames,
   itemType,
-  isStaked,
   infoTooltipMessage,
   expandedGraphStrokeColor,
-  isPOL,
   margin = {
     top: 0,
     right: 0,
     bottom: 0,
     left: 0,
   },
+  menuItemData,
 }: {
   type: string;
   data: any[];
@@ -354,11 +358,10 @@ function DiffusionChart({
   bulletpointColors: CSSProperties[];
   itemNames: string[];
   itemType: string;
-  isStaked: boolean;
   infoTooltipMessage: string;
   expandedGraphStrokeColor: string;
-  isPOL: boolean;
   margin?: CategoricalChartProps["margin"];
+  menuItemData: MenuItemObj[];
 }) {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -397,10 +400,8 @@ function DiffusionChart({
         bulletpointColors,
         itemNames,
         itemType,
-        isStaked,
         isExpanded,
         expandedGraphStrokeColor,
-        isPOL,
         margin,
       );
     if (type === "stack")
@@ -465,9 +466,9 @@ function DiffusionChart({
           display="flex"
           justifyContent="space-between"
           alignItems="center"
-          style={{ width: "100%", overflow: "hidden" }}
+          style={{ width: "100%", overflow: "hidden", display: "flex" }}
         >
-          <Box display="flex" width="90%" alignItems="center">
+          <Box display="flex" alignItems="center">
             <Typography
               variant="h5"
               className="card-title-text"
@@ -480,13 +481,25 @@ function DiffusionChart({
             </Typography>
           </Box>
           {/* could make this svgbutton */}
+          <Box display="flex" alignItems="center">
+            {menuItemData && menuItemData.length && (
+              <Select label="Time" style={{ width: "120px", height: "30px", marginRight: "8px" }}>
+                {menuItemData.map(item => {
+                  return <MenuItem value={item.value}>{item.label}</MenuItem>;
+                })}
+              </Select>
+            )}
 
-          <SvgIcon
-            component={Fullscreen}
-            color="primary"
-            onClick={handleOpen}
-            style={{ fontSize: "1rem", cursor: "pointer" }}
-          />
+            <div style={{ borderRadius: "5px", background: "rgba(171, 182, 255, 0.1)", padding: "8px" }}>
+              <SvgIcon
+                component={Fullscreen}
+                color="primary"
+                onClick={handleOpen}
+                style={{ fontSize: "15px", cursor: "pointer" }}
+              />
+            </div>
+          </Box>
+
           <ExpandedChart
             open={open}
             handleClose={handleClose}
@@ -517,7 +530,7 @@ function DiffusionChart({
       <Box width="100%" minHeight={260} minWidth={310} className="ohm-chart">
         {loading || (data && data.length > 0) ? (
           <ResponsiveContainer minHeight={260} width="100%">
-            {renderChart(type, false)}
+            {renderChart(type, true)}
           </ResponsiveContainer>
         ) : (
           <Skeleton variant="rect" width="100%" height={260} />
