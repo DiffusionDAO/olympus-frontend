@@ -2,9 +2,12 @@ import "./Dashboard.scss";
 
 import { t } from "@lingui/macro";
 import { Container, Grid, useMediaQuery } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 import { Paper } from "@olympusdao/component-library";
 import { memo } from "react";
 
+import cellBg1SVG from "../../assets/images/dashboard/cell-bg1.svg";
+import cellBg1MobileSVG from "../../assets/images/dashboard/cell-bg1-mobile.svg";
 import cellBgPNG from "../../assets/images/dashboard/cell-bg4.png";
 import cfPNG from "../../assets/images/dashboard/cf.png";
 import diPNG from "../../assets/images/dashboard/di.png";
@@ -18,10 +21,25 @@ import troiSVG from "../../assets/images/dashboard/troi.svg";
 import tvlSVG from "../../assets/images/dashboard/tvl.svg";
 import { DataCell } from "./components/DataCell/DataCell";
 import { AreaGraph, MarketValueGraph, RunwayAvailableGraph, TVLGraph } from "./components/Graph/Graph";
+const useStyles = makeStyles(theme => ({
+  cellItemBg: {
+    backgroundImage: `url(${cellBg1MobileSVG})`,
+    [theme.breakpoints.up(981)]: {
+      backgroundImage: `url(${cellBg1SVG})`,
+    },
+  },
+  hasRLBorder: {
+    [theme.breakpoints.up(981)]: {
+      borderRight: "1px solid rgba(255, 255, 255, 0.05)",
+      borderLeft: "1px solid rgba(255, 255, 255, 0.05)",
+    },
+  },
+}));
 
 const Dashboard = () => {
   const isSmallScreen = useMediaQuery("(max-width: 650px)");
   const isVerySmallScreen = useMediaQuery("(max-width: 379px)");
+  const classes = useStyles();
   return (
     <div id="dashboard-view" className={`${isSmallScreen && "smaller"} ${isVerySmallScreen && "very-small"}`}>
       <Container
@@ -43,7 +61,7 @@ const Dashboard = () => {
               <Grid item lg={9} md={9} sm={12} xs={12}>
                 <Grid container spacing={2}>
                   <Grid item lg={12} md={12} sm={12} xs={12}>
-                    <div className="cell-box cell-item1">
+                    <div className={`${classes.cellItemBg} cell-box cell-item1`}>
                       <Grid container spacing={0}>
                         <Grid item lg={4} md={4} sm={12} xs={12}>
                           <div className="cell-sub-item">
@@ -52,7 +70,7 @@ const Dashboard = () => {
                           </div>
                         </Grid>
                         <Grid item lg={4} md={4} sm={12} xs={12}>
-                          <div className="has-border cell-sub-item">
+                          <div className={`${classes.hasRLBorder} cell-sub-item`}>
                             <DataCell title="Total circulation" data="$123.22M" />
                             <DataCell title="Single currency internal savings fund" data="$123.22M" />
                           </div>

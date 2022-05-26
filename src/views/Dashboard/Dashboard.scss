@@ -76,7 +76,7 @@
     &.cell-item1 {
       flex-wrap: wrap;
       justify-content: space-between;
-      background-image: url("../../assets/images/dashboard/cell-bg1.svg");
+      border: none;
       .cell-sub-item {
         flex: 1;
         height: 200px;
@@ -85,10 +85,6 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        &.has-border {
-          border-right: 1px solid rgba(255, 255, 255, 0.05);
-          border-left: 1px solid rgba(255, 255, 255, 0.05);
-        }
       }
     }
     &.cell-item2 {
@@ -535,15 +531,6 @@
       color: var(--ohm-gold);
       font-weight: 400;
       border-color: var(--ohm-gold);
-    }
-  }
-}
-@media (max-width: 981px) {
-  #dashboard-view {
-    .cell-box {
-      &.cell-item1 {
-        background-image: url("../../assets/images/dashboard/cell-bg1-mobile.svg");
-      }
     }
   }
 }

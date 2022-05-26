@@ -1,7 +1,7 @@
-import "./chart.scss";
+import "./DiffusionChart.scss";
 
 import { t } from "@lingui/macro";
-import { Box, CircularProgress, MenuItem, Select, SvgIcon, Typography } from "@material-ui/core";
+import { Box, CircularProgress, MenuItem, Select, Typography } from "@material-ui/core";
 import { Skeleton } from "@material-ui/lab";
 import { InfoTooltip } from "@olympusdao/component-library";
 import { CSSProperties, useEffect, useState } from "react";
@@ -19,7 +19,7 @@ import {
   YAxis,
 } from "recharts";
 import { CategoricalChartProps } from "recharts/types/chart/generateCategoricalChart";
-import { ReactComponent as Fullscreen } from "src/assets/icons/fullscreen.svg";
+import FullscreenPng from "src/assets/icons/fullscreen.png";
 import { formatCurrency, trim } from "src/helpers";
 
 import CustomDiffusionTooltip from "./CustomDiffusionTooltip";
@@ -483,20 +483,22 @@ function DiffusionChart({
           {/* could make this svgbutton */}
           <Box display="flex" alignItems="center">
             {menuItemData && menuItemData.length && (
-              <Select label="Time" style={{ width: "120px", height: "30px", marginRight: "8px" }}>
+              <Select
+                label="Time"
+                className="charts-select"
+                style={{ width: "120px", height: "30px", marginRight: "8px" }}
+              >
                 {menuItemData.map(item => {
                   return <MenuItem value={item.value}>{item.label}</MenuItem>;
                 })}
               </Select>
             )}
 
-            <div style={{ borderRadius: "5px", background: "rgba(171, 182, 255, 0.1)", padding: "8px" }}>
-              <SvgIcon
-                component={Fullscreen}
-                color="primary"
-                onClick={handleOpen}
-                style={{ fontSize: "15px", cursor: "pointer" }}
-              />
+            <div
+              style={{ borderRadius: "5px", background: "rgba(171, 182, 255, 0.1)", padding: "8px" }}
+              onClick={handleOpen}
+            >
+              <img src={FullscreenPng} style={{ width: "15px", height: "15px", cursor: "pointer" }} />
             </div>
           </Box>
 

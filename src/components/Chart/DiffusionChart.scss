@@ -1,0 +1,35 @@
+.chart-card-header {
+  margin-bottom: 20px;
+  .card-title-text {
+    overflow: hidden;
+    font-weight: 400;
+    white-space: nowrap;
+    width: auto;
+    text-overflow: ellipsis;
+  }
+  .card-sub-title-fixation-text {
+    margin: 0px 10px 0px 0px;
+  }
+}
+.ohm-chart {
+  padding: 0px 8px;
+}
+.charts-select {
+  background: rgba(171, 182, 255, 0.1);
+  border-radius: 7px;
+  &.MuiInput-underline:before {
+    content: none;
+  }
+  &.MuiInput-underline::after {
+    content: none;
+  }
+  .MuiSelect-select.MuiSelect-select {
+    padding: 10px !important;
+  }
+  .MuiSelect-select:focus {
+    background-color: rgba(255, 255, 255, 0);
+  }
+  .MuiSelect-icon {
+    right: 8px;
+  }
+}
