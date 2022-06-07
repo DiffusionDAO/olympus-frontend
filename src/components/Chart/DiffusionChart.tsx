@@ -28,6 +28,7 @@ import ExpandedChart from "./ExpandedChart";
 const tickCount = 3;
 const expandedTickCount = 5;
 
+// 横着的网格线
 const renderExpandedChartStroke = (isExpanded: boolean, color: string) => {
   return isExpanded ? <CartesianGrid vertical={false} stroke={color} /> : "";
 };
@@ -62,6 +63,7 @@ const renderAreaChart = (
   isExpanded: boolean,
   expandedGraphStrokeColor: string,
   margin: CategoricalChartProps["margin"],
+  lineType: LineType,
 ) => (
   <AreaChart data={data} margin={margin}>
     <defs>
@@ -95,54 +97,17 @@ const renderAreaChart = (
       }
     />
     {dataKey.map((item: string, index: number) => (
+      // fillOpacity只有当有一个dataKey时，值才生效
       <Area
-        type="monotone"
+        type={lineType}
         dataKey={item}
         stroke={stroke && stroke[index] ? stroke[index] : "none"}
-        fill={`url(#color-${item})`}
-        fillOpacity={1}
+        fill={stroke && stroke[index] ? stroke[index] : "none"}
+        fillOpacity={0.1}
       />
     ))}
     {renderExpandedChartStroke(isExpanded, expandedGraphStrokeColor)}
   </AreaChart>
-);
-
-const renderLineChart = (
-  data: any[],
-  dataKey: string[],
-  stroke: string[],
-  color: string,
-  dataFormat: string,
-  bulletpointColors: CSSProperties[],
-  itemNames: string[],
-  itemType: string,
-  isExpanded: boolean,
-  expandedGraphStrokeColor: string,
-  scale: string,
-  margin: CategoricalChartProps["margin"],
-) => (
-  <LineChart data={data} margin={margin}>
-    <XAxis dataKey="timestamp" padding={{ right: 20 }} />
-    <YAxis
-      tickCount={scale == "log" ? 1 : isExpanded ? expandedTickCount : tickCount}
-      axisLine={false}
-      tickLine={false}
-      width={32}
-      scale={() => scale}
-      tickFormatter={number =>
-        number !== 0 ? (dataFormat !== "percent" ? `${number}` : `${parseFloat(number) / 1000}k`) : ""
-      }
-      domain={[scale == "log" ? "dataMin" : 0, "auto"]}
-      allowDataOverflow={false}
-    />
-    <Tooltip
-      content={
-        <CustomDiffusionTooltip bulletpointColors={bulletpointColors} itemNames={itemNames} itemType={itemType} />
-      }
-    />
-    <Line type="monotone" dataKey={dataKey[0]} stroke={stroke ? stroke[0] : "none"} color={color} dot={false} />;
-    {renderExpandedChartStroke(isExpanded, expandedGraphStrokeColor)}
-  </LineChart>
 );
 
 const renderMultiLineChart = (
@@ -216,6 +181,40 @@ const renderBarChart = (
   </BarChart>
 );
 
+const renderVerticalBarChart = (
+  data: any[],
+  dataKey: string[],
+  stroke: string[],
+  dataFormat: string,
+  bulletpointColors: CSSProperties[],
+  itemNames: string[],
+  itemType: string,
+  isExpanded: boolean,
+  expandedGraphStrokeColor: string,
+  margin: CategoricalChartProps["margin"],
+) => (
+  <BarChart data={data} margin={margin} layout="vertical">
+    <XAxis type="number" axisLine={false} tickLine={false} />
+    <YAxis dataKey="timestamp" type="category" scale="band" axisLine={false} tickLine={false} />
+    <Tooltip
+      content={
+        <CustomDiffusionTooltip bulletpointColors={bulletpointColors} itemNames={itemNames} itemType={itemType} />
+      }
+    />
+    <Bar
+      dataKey={dataKey[0]}
+      fill={stroke[0]}
+      radius={5}
+      maxBarSize={10}
+      background={{
+        radius: 5,
+        fill: "rgba(171, 182, 255, 0.1)",
+      }}
+      label={{ fill: "#fff", fontSize: 12, position: "right" }}
+    />
+  </BarChart>
+);
+
 function DiffusionChart({
   type,
   data,
@@ -239,7 +238,7 @@ function DiffusionChart({
     left: 0,
   },
   menuItemData,
-  lineType = "monotone",
+  lineType = "monotone", //折线的类型，圆弧或者直线折叠
 }: {
   type: string;
   data: any[];
@@ -300,9 +299,23 @@ function DiffusionChart({
         isExpanded,
         expandedGraphStrokeColor,
         margin,
+        lineType,
       );
     if (type === "bar")
       return renderBarChart(
+        data,
+        dataKey,
+        stroke,
+        dataFormat,
+        bulletpointColors,
+        itemNames,
+        itemType,
+        isExpanded,
+        expandedGraphStrokeColor,
+        margin,
+      );
+    if (type === "verticalBar")
+      return renderVerticalBarChart(
         data,
         dataKey,
         stroke,

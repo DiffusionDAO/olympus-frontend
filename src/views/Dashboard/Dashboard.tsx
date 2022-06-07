@@ -21,14 +21,15 @@ import troiSVG from "../../assets/images/dashboard/troi.svg";
 import tvlSVG from "../../assets/images/dashboard/tvl.svg";
 import { DataCell } from "./components/DataCell/DataCell";
 import {
+  EightGraph,
   ElevenGraph,
   FiveGraph,
   FourGraph,
-  MarketValueGraph,
+  NineGraph,
   OneGraph,
-  RunwayAvailableGraph,
   SevenGraph,
   SixGraph,
+  TenGraph,
   ThirteenGraph,
   ThreeGraph,
   TwelveGraph,
@@ -254,12 +255,12 @@ const Dashboard = () => {
             <Grid container spacing={2}>
               <Grid item lg={7} md={7} sm={12} xs={12}>
                 <Paper className="ohm-card ohm-chart-card">
-                  <MarketValueGraph />
+                  <EightGraph />
                 </Paper>
               </Grid>
               <Grid item lg={5} md={5} sm={12} xs={12}>
                 <Paper className="ohm-card ohm-chart-card">
-                  <MarketValueGraph />
+                  <NineGraph />
                 </Paper>
               </Grid>
             </Grid>
@@ -267,7 +268,7 @@ const Dashboard = () => {
 
           <Grid item lg={12} md={12} sm={12} xs={12}>
             <Paper className="ohm-card ohm-chart-card">
-              <RunwayAvailableGraph />
+              <TenGraph />
             </Paper>
           </Grid>
 

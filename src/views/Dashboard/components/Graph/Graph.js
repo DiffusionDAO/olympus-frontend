@@ -172,6 +172,77 @@ export const SevenGraph = () => {
   );
 };
 
+// 第8个指标图
+export const EightGraph = () => {
+  const theme = useTheme();
+  return (
+    <DiffusionChart
+      type="area"
+      data={dashboardData}
+      menuItemData={menuItemData}
+      dataKey={dataKey().eight}
+      stopColor={[
+        ["#3D72FD", "#3D72FD"],
+        ["#F200FF", "#F200FF"],
+      ]}
+      stroke={["#3D72FD", "#F200FF"]}
+      lineType="linear"
+      headerText={headerText().eight}
+      headerSubText={`${dashboardData && formatCurrency(dashboardData[0].treasuryDaiMarketValue)}`}
+      bulletpointColors={bulletpoints.eight}
+      itemNames={tooltipItems.eight}
+      itemType={itemType.dollar}
+      infoTooltipMessage={tooltipInfoMessages().eight}
+      expandedGraphStrokeColor={theme.palette.graphStrokeColor}
+    />
+  );
+};
+// 第9个指标图
+export const NineGraph = () => {
+  const theme = useTheme();
+  return (
+    <DiffusionChart
+      type="verticalBar"
+      data={dashboardData}
+      menuItemData={menuItemData}
+      itemType={itemType.dollar}
+      itemNames={tooltipItems.nine}
+      dataKey={dataKey().nine}
+      headerText={headerText().nine}
+      stroke={["#00A1FF"]}
+      bulletpointColors={bulletpoints.nine}
+      infoTooltipMessage={tooltipInfoMessages().nine}
+      expandedGraphStrokeColor={theme.palette.graphStrokeColor}
+      headerSubText={`${dashboardData && formatCurrency(dashboardData[0].tvl)}`}
+    />
+  );
+};
+
+// 第10个指标
+export const TenGraph = () => {
+  const theme = useTheme();
+  const { data } = useProtocolMetrics();
+  return (
+    <DiffusionChart
+      type="line"
+      data={dashboardData}
+      menuItemData={menuItemData}
+      dataKey={dataKey().ten}
+      stroke={["#DF741A"]}
+      lineType="linear"
+      headerText={headerText().ten}
+      headerSubText={`${data && trim(data[0].runwayCurrent, 1)} Days`}
+      dataFormat="days"
+      bulletpointColors={bulletpoints.ten}
+      itemNames={tooltipItems.ten}
+      itemType={""}
+      margin={{ left: 30 }}
+      infoTooltipMessage={tooltipInfoMessages().ten}
+      expandedGraphStrokeColor={theme.palette.graphStrokeColor}
+    />
+  );
+};
+
 // 第11个指标
 export const ElevenGraph = () => {
   const theme = useTheme();
@@ -181,8 +252,8 @@ export const ElevenGraph = () => {
       type="area"
       data={dashboardData}
       dataKey={dataKey().eleven}
-      stopColor={[["#FF3FF7", "#FF3FF7"]]}
-      stroke={["#FF3FF7"]}
+      stopColor={[["#FB0158", "#FB0158"]]}
+      stroke={["#FB0158"]}
       headerText={headerText().eleven}
       headerSubText={`${dashboardData && formatCurrency(dashboardData[0].treasuryDaiMarketValue)}`}
       bulletpointColors={bulletpoints.eleven}
