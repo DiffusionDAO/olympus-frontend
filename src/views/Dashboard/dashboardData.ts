@@ -50,13 +50,81 @@ query {
 }
 `;
 
-// export default treasuryData;
+// tootip样式配置
 export const bulletpoints = {
   tvl: [
     {
       right: 20,
       top: -12,
       background: "#0031FF",
+    },
+  ],
+  two: [
+    {
+      right: 20,
+      top: -12,
+      background: "#3D72FD",
+    },
+  ],
+  three: [
+    {
+      right: 15,
+      top: -12,
+      background: "#3D72FD",
+    },
+    {
+      right: 25,
+      top: -12,
+      background: "#F200FF",
+    },
+  ],
+  four: [
+    {
+      right: 20,
+      top: -12,
+      background: "#D257FF",
+    },
+  ],
+  five: [
+    {
+      right: 20,
+      top: -12,
+      background: "#26E6C5",
+    },
+  ],
+  six: [
+    {
+      right: 20,
+      top: -12,
+      background: "#EC6EFF",
+    },
+  ],
+  seven: [
+    {
+      right: 20,
+      top: -12,
+      background: "#DF741A",
+    },
+  ],
+  eleven: [
+    {
+      right: 20,
+      top: -12,
+      background: "#FF3FF7",
+    },
+  ],
+  twelve: [
+    {
+      right: 20,
+      top: -12,
+      background: "#DF741A",
+    },
+  ],
+  thirteen: [
+    {
+      right: 20,
+      top: -12,
+      background: "#1C6CFF",
     },
   ],
   coin: [
@@ -157,8 +225,18 @@ export const bulletpoints = {
   ],
 };
 
+//tooltip文字
 export const tooltipItems = {
   tvl: [t`Tvl`],
+  two: [t`Tvl`],
+  three: ["DAI", "FRAX"],
+  four: [t`Tvl`],
+  five: [t`Tvl`],
+  six: [t`Tvl`],
+  seven: [t`Tvl`],
+  eleven: [t`Tvl`],
+  twelve: [t`Tvl`],
+  thirteen: [t`Tvl`],
   coin: ["DAI", "FRAX"],
   rfv: ["DAI", "FRAX", "LUSD", "UST"],
   holder: ["OHMies"],
@@ -167,9 +245,19 @@ export const tooltipItems = {
   pol: [t`SLP Treasury`, t`Market SLP`],
 };
 
+// 数据字段
 export const dataKey = () => {
   return {
     tvl: ["tvl"],
+    two: ["treasuryDaiMarketValue"],
+    three: ["treasuryDaiMarketValue", "treasuryFraxMarketValue"],
+    four: ["treasuryDaiMarketValue"],
+    five: ["treasuryDaiMarketValue"],
+    six: ["treasuryDaiMarketValue"],
+    seven: ["treasuryDaiMarketValue"],
+    eleven: ["treasuryDaiMarketValue"],
+    twelve: ["treasuryDaiMarketValue"],
+    thirteen: ["treasuryDaiMarketValue"],
     coin: ["treasuryDaiMarketValue", "treasuryFraxMarketValue"],
     runway: ["runwayCurrent"],
   };
@@ -178,6 +266,15 @@ export const dataKey = () => {
 export const headerText = () => {
   return {
     tvl: t`TVL`,
+    two: t`TVL`,
+    three: t`TVL`,
+    four: t`TVL`,
+    five: t`TVL`,
+    six: t`TVL`,
+    seven: t`TVL`,
+    eleven: t`TVL`,
+    twelve: t`TVL`,
+    thirteen: t`TVL`,
     coin: t`Market`,
     runway: t`Runway Available`,
   };
@@ -186,6 +283,15 @@ export const headerText = () => {
 export const tooltipInfoMessages = () => {
   return {
     tvl: t`Total Value Deposited, is the dollar amount of all OHM staked in the protocol. This metric is often used as growth or health indicator in DeFi projects.`,
+    two: t`Total Value Deposited, is the dollar amount of all OHM staked in the protocol. This metric is often used as growth or health indicator in DeFi projects.`,
+    three: t`Total Value Deposited, is the dollar amount of all OHM staked in the protocol. This metric is often used as growth or health indicator in DeFi projects.`,
+    four: t`Total Value Deposited, is the dollar amount of all OHM staked in the protocol. This metric is often used as growth or health indicator in DeFi projects.`,
+    five: t`Total Value Deposited, is the dollar amount of all OHM staked in the protocol. This metric is often used as growth or health indicator in DeFi projects.`,
+    six: t`Total Value Deposited, is the dollar amount of all OHM staked in the protocol. This metric is often used as growth or health indicator in DeFi projects.`,
+    seven: t`Total Value Deposited, is the dollar amount of all OHM staked in the protocol. This metric is often used as growth or health indicator in DeFi projects.`,
+    eleven: t`Total Value Deposited, is the dollar amount of all OHM staked in the protocol. This metric is often used as growth or health indicator in DeFi projects.`,
+    twelve: t`Total Value Deposited, is the dollar amount of all OHM staked in the protocol. This metric is often used as growth or health indicator in DeFi projects.`,
+    thirteen: t`Total Value Deposited, is the dollar amount of all OHM staked in the protocol. This metric is often used as growth or health indicator in DeFi projects.`,
     mvt: t`Market Value of Treasury Assets, is the sum of the value (in dollars) of all assets held by the treasury (Excluding pTokens and Vested tokens).`,
     rfv: t`Risk Free Value, is the amount of funds the treasury guarantees to use for backing OHM.`,
     pol: t`Protocol Owned Liquidity, is the amount of LP the treasury owns and controls. The more POL the better for the protocol and its users.`,

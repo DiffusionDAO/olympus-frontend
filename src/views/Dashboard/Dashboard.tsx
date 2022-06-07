@@ -20,7 +20,20 @@ import tfotdSVG from "../../assets/images/dashboard/tfotd.svg";
 import troiSVG from "../../assets/images/dashboard/troi.svg";
 import tvlSVG from "../../assets/images/dashboard/tvl.svg";
 import { DataCell } from "./components/DataCell/DataCell";
-import { AreaGraph, MarketValueGraph, RunwayAvailableGraph, TVLGraph } from "./components/Graph/Graph";
+import {
+  ElevenGraph,
+  FiveGraph,
+  FourGraph,
+  MarketValueGraph,
+  OneGraph,
+  RunwayAvailableGraph,
+  SevenGraph,
+  SixGraph,
+  ThirteenGraph,
+  ThreeGraph,
+  TwelveGraph,
+  TwoGraph,
+} from "./components/Graph/Graph";
 const useStyles = makeStyles(theme => ({
   cellItemBg: {
     backgroundImage: `url(${cellBg1MobileSVG})`,
@@ -188,12 +201,12 @@ const Dashboard = () => {
             <Grid container spacing={2}>
               <Grid item lg={7} md={7} sm={12} xs={12}>
                 <Paper className="ohm-card ohm-chart-card">
-                  <TVLGraph />
+                  <OneGraph />
                 </Paper>
               </Grid>
               <Grid item lg={5} md={5} sm={12} xs={12}>
                 <Paper className="ohm-card ohm-chart-card">
-                  <AreaGraph />
+                  <TwoGraph />
                 </Paper>
               </Grid>
             </Grid>
@@ -205,12 +218,12 @@ const Dashboard = () => {
                 <Grid container spacing={4}>
                   <Grid item lg={12} md={12} sm={12} xs={12}>
                     <Paper className="ohm-card ohm-chart-card">
-                      <MarketValueGraph />
+                      <ThreeGraph />
                     </Paper>
                   </Grid>
                   <Grid item lg={12} md={12} sm={12} xs={12}>
                     <Paper className="ohm-card ohm-chart-card">
-                      <TVLGraph />
+                      <FourGraph />
                     </Paper>
                   </Grid>
                 </Grid>
@@ -219,17 +232,17 @@ const Dashboard = () => {
                 <Grid container spacing={2}>
                   <Grid item lg={12} md={12} sm={12} xs={12}>
                     <Paper className="ohm-card ohm-chart-card" style={{ height: "238px" }}>
-                      <RunwayAvailableGraph />
+                      <FiveGraph />
                     </Paper>
                   </Grid>
                   <Grid item lg={12} md={12} sm={12} xs={12}>
                     <Paper className="ohm-card ohm-chart-card" style={{ height: "238px" }}>
-                      <RunwayAvailableGraph />
+                      <SixGraph />
                     </Paper>
                   </Grid>
                   <Grid item lg={12} md={12} sm={12} xs={12}>
                     <Paper className="ohm-card ohm-chart-card" style={{ height: "238px" }}>
-                      <RunwayAvailableGraph />
+                      <SevenGraph />
                     </Paper>
                   </Grid>
                 </Grid>
@@ -262,17 +275,17 @@ const Dashboard = () => {
             <Grid container spacing={2}>
               <Grid item lg={4} md={4} sm={12} xs={12}>
                 <Paper className="ohm-card ohm-chart-card">
-                  <MarketValueGraph />
+                  <ElevenGraph />
                 </Paper>
               </Grid>
               <Grid item lg={4} md={4} sm={12} xs={12}>
                 <Paper className="ohm-card ohm-chart-card">
-                  <MarketValueGraph />
+                  <TwelveGraph />
                 </Paper>
               </Grid>
               <Grid item lg={4} md={4} sm={12} xs={12}>
                 <Paper className="ohm-card ohm-chart-card">
-                  <MarketValueGraph />
+                  <ThirteenGraph />
                 </Paper>
               </Grid>
             </Grid>

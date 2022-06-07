@@ -36,6 +36,19 @@ interface MenuItemObj {
   label: string;
   value: string | number;
 }
+type LineType =
+  | "basis"
+  | "basisClosed"
+  | "basisOpen"
+  | "linear"
+  | "linearClosed"
+  | "natural"
+  | "monotoneX"
+  | "monotoneY"
+  | "monotone"
+  | "step"
+  | "stepBefore"
+  | "stepAfter";
 
 const renderAreaChart = (
   data: any[],
@@ -52,10 +65,12 @@ const renderAreaChart = (
 ) => (
   <AreaChart data={data} margin={margin}>
     <defs>
-      <linearGradient id={`color-${dataKey[0]}`} x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stopColor={stopColor[0][0]} stopOpacity={1} />
-        <stop offset="90%" stopColor={stopColor[0][1]} stopOpacity={0.9} />
-      </linearGradient>
+      {dataKey.map((item: string, index: number) => (
+        <linearGradient id={`color-${item}`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="5%" stopColor={stopColor[index][0]} stopOpacity={0.8} />
+          <stop offset="95%" stopColor={stopColor[index][1]} stopOpacity={0} />
+        </linearGradient>
+      ))}
     </defs>
     <XAxis dataKey="timestamp" padding={{ right: 20 }} />
     <YAxis
@@ -79,135 +94,15 @@ const renderAreaChart = (
         <CustomDiffusionTooltip bulletpointColors={bulletpointColors} itemNames={itemNames} itemType={itemType} />
       }
     />
-    <Area type="monotone" dataKey={dataKey[0]} stroke="none" fill={`url(#color-${dataKey[0]})`} fillOpacity={1} />
-    {renderExpandedChartStroke(isExpanded, expandedGraphStrokeColor)}
-  </AreaChart>
-);
-
-const renderStackedAreaChart = (
-  data: any[],
-  dataKey: string[],
-  stopColor: string[][],
-  stroke: string[],
-  dataFormat: string,
-  bulletpointColors: CSSProperties[],
-  itemNames: string[],
-  itemType: string,
-  isExpanded: boolean,
-  expandedGraphStrokeColor: string,
-  margin: CategoricalChartProps["margin"],
-) => (
-  <AreaChart data={data} margin={margin}>
-    <defs>
-      <linearGradient id={`color-${dataKey[0]}`} x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stopColor={stopColor[0][0]} stopOpacity={1} />
-        <stop offset="90%" stopColor={stopColor[0][1]} stopOpacity={0.9} />
-      </linearGradient>
-      <linearGradient id={`color-${dataKey[1]}`} x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stopColor={stopColor[1][0]} stopOpacity={1} />
-        <stop offset="90%" stopColor={stopColor[1][1]} stopOpacity={0.9} />
-      </linearGradient>
-      <linearGradient id={`color-${dataKey[2]}`} x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stopColor={stopColor[2][0]} stopOpacity={1} />
-        <stop offset="90%" stopColor={stopColor[2][1]} stopOpacity={0.9} />
-      </linearGradient>
-      <linearGradient id={`color-${dataKey[3]}`} x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stopColor={stopColor[3][0]} stopOpacity={1} />
-        <stop offset="90%" stopColor={stopColor[3][1]} stopOpacity={0.9} />
-      </linearGradient>
-      <linearGradient id={`color-${dataKey[4]}`} x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stopColor={stopColor[4][0]} stopOpacity={1} />
-        <stop offset="90%" stopColor={stopColor[4][1]} stopOpacity={0.9} />
-      </linearGradient>
-      <linearGradient id={`color-${dataKey[5]}`} x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stopColor={stopColor[5][0]} stopOpacity={1} />
-        <stop offset="90%" stopColor={stopColor[5][1]} stopOpacity={0.9} />
-      </linearGradient>
-      <linearGradient id={`color-${dataKey[6]}`} x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stopColor={stopColor[6][0]} stopOpacity={1} />
-        <stop offset="90%" stopColor={stopColor[6][1]} stopOpacity={0.9} />
-      </linearGradient>
-    </defs>
-    <XAxis dataKey="timestamp" padding={{ right: 20 }} />
-    <YAxis
-      tickCount={isExpanded ? expandedTickCount : tickCount}
-      axisLine={false}
-      tickLine={false}
-      width={dataFormat === "percent" ? 33 : 55}
-      tickFormatter={number => {
-        if (number !== 0) {
-          if (dataFormat === "percent") {
-            return `${trim(parseFloat(number), 2)}%`;
-          } else if (dataFormat === "k") return `${formatCurrency(parseFloat(number) / 1000)}k`;
-          else return `${formatCurrency(parseFloat(number) / 1000000)}M`;
-        }
-        return "";
-      }}
-      domain={[0, "auto"]}
-      allowDataOverflow={false}
-    />
-    <Tooltip
-      formatter={(value: string) => trim(parseFloat(value), 2)}
-      content={
-        <CustomDiffusionTooltip bulletpointColors={bulletpointColors} itemNames={itemNames} itemType={itemType} />
-      }
-    />
-    <Area
-      type="monotone"
-      dataKey={dataKey[0]}
-      stroke={stroke ? stroke[0] : "none"}
-      fill={`url(#color-${dataKey[0]})`}
-      fillOpacity={1}
-      stackId="1"
-    />
-    <Area
-      type="monotone"
-      dataKey={dataKey[1]}
-      stroke={stroke ? stroke[1] : "none"}
-      fill={`url(#color-${dataKey[1]})`}
-      fillOpacity={1}
-      stackId="1"
-    />
-    <Area
-      type="monotone"
-      dataKey={dataKey[2]}
-      stroke={stroke ? stroke[2] : "none"}
-      fill={`url(#color-${dataKey[2]})`}
-      fillOpacity={1}
-      stackId="1"
-    />
-    <Area
-      type="monotone"
-      dataKey={dataKey[3]}
-      stroke={stroke ? stroke[3] : "none"}
-      fill={`url(#color-${dataKey[3]})`}
-      fillOpacity={1}
-      stackId="1"
-    />
-    <Area
-      type="monotone"
-      dataKey={dataKey[4]}
-      stroke={stroke ? stroke[4] : "none"}
-      fill={`url(#color-${dataKey[4]})`}
-      fillOpacity={1}
-      stackId="1"
-    />
-    <Area
-      type="monotone"
-      dataKey={dataKey[5]}
-      stroke={stroke ? stroke[5] : "none"}
-      fill={`url(#color-${dataKey[5]})`}
-      fillOpacity={1}
-      stackId="1"
-    />
-    <Area
-      type="monotone"
-      dataKey={dataKey[6]}
-      stroke={stroke ? stroke[6] : "none"}
-      fill={`url(#color-${dataKey[6]})`}
-      fillOpacity={1}
-      stackId="1"
-    />
+    {dataKey.map((item: string, index: number) => (
+      <Area
+        type="monotone"
+        dataKey={item}
+        stroke={stroke && stroke[index] ? stroke[index] : "none"}
+        fill={`url(#color-${item})`}
+        fillOpacity={1}
+      />
+    ))}
     {renderExpandedChartStroke(isExpanded, expandedGraphStrokeColor)}
   </AreaChart>
 );
@@ -262,6 +157,7 @@ const renderMultiLineChart = (
   isExpanded: boolean,
   expandedGraphStrokeColor: string,
   margin: CategoricalChartProps["margin"],
+  lineType: LineType,
 ) => (
   <LineChart data={data} margin={margin}>
     <XAxis dataKey="timestamp" padding={{ right: 20 }} />
@@ -279,10 +175,9 @@ const renderMultiLineChart = (
         <CustomDiffusionTooltip bulletpointColors={bulletpointColors} itemNames={itemNames} itemType={itemType} />
       }
     />
-    <Line type="monotone" dataKey={dataKey[0]} stroke={stroke[0]} dot={false} />;
-    <Line type="monotone" dataKey={dataKey[1]} stroke={stroke[1]} dot={false} />;
-    <Line type="monotone" dataKey={dataKey[2]} stroke={stroke[2]} dot={false} />;
-    <Line type="monotone" dataKey={dataKey[3]} stroke={stroke[3]} dot={false} />;
+    {dataKey.map((item: string, index: number) => (
+      <Line type={lineType} dataKey={item} stroke={stroke[index]} dot={false} />
+    ))}
     {renderExpandedChartStroke(isExpanded, expandedGraphStrokeColor)}
   </LineChart>
 );
@@ -344,6 +239,7 @@ function DiffusionChart({
     left: 0,
   },
   menuItemData,
+  lineType = "monotone",
 }: {
   type: string;
   data: any[];
@@ -362,6 +258,7 @@ function DiffusionChart({
   expandedGraphStrokeColor: string;
   margin?: CategoricalChartProps["margin"];
   menuItemData: MenuItemObj[];
+  lineType: LineType;
 }) {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -376,7 +273,7 @@ function DiffusionChart({
 
   const renderChart = (type: string, isExpanded: boolean) => {
     if (type === "line")
-      return renderLineChart(
+      return renderMultiLineChart(
         data,
         dataKey,
         stroke,
@@ -387,8 +284,8 @@ function DiffusionChart({
         itemType,
         isExpanded,
         expandedGraphStrokeColor,
-        scale,
         margin,
+        lineType,
       );
     if (type === "area")
       return renderAreaChart(
@@ -404,35 +301,6 @@ function DiffusionChart({
         expandedGraphStrokeColor,
         margin,
       );
-    if (type === "stack")
-      return renderStackedAreaChart(
-        data,
-        dataKey,
-        stopColor,
-        stroke,
-        dataFormat,
-        bulletpointColors,
-        itemNames,
-        itemType,
-        isExpanded,
-        expandedGraphStrokeColor,
-        margin,
-      );
-    if (type === "multi")
-      return renderMultiLineChart(
-        data,
-        dataKey,
-        stroke,
-        color,
-        dataFormat,
-        bulletpointColors,
-        itemNames,
-        itemType,
-        isExpanded,
-        expandedGraphStrokeColor,
-        margin,
-      );
-
     if (type === "bar")
       return renderBarChart(
         data,
@@ -519,11 +387,11 @@ function DiffusionChart({
             <Typography
               variant="h6"
               className="card-sub-title-fixation-text"
-              style={{ fontWeight: 400, color: "rgb(100, 149, 249)" }}
+              style={{ fontWeight: 400, color: "#ABB6FF", fontSize: "14px" }}
             >
               {t`Today`}
             </Typography>
-            <Typography variant="h5" style={{ fontWeight: 600, marginRight: 5, color: "rgb(43, 133, 228)" }}>
+            <Typography variant="h5" style={{ fontWeight: "bold", marginRight: 5, color: "#fff", fontSize: "20px" }}>
               {headerSubText}
             </Typography>
           </Box>
