@@ -6,8 +6,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Paper } from "@olympusdao/component-library";
 import { memo } from "react";
 
-import cellBg1SVG from "../../assets/images/dashboard/cell-bg1.svg";
-import cellBg1MobileSVG from "../../assets/images/dashboard/cell-bg1-mobile.svg";
 import cellBgPNG from "../../assets/images/dashboard/cell-bg4.png";
 import cfPNG from "../../assets/images/dashboard/cf.png";
 import diPNG from "../../assets/images/dashboard/di.png";
@@ -36,12 +34,6 @@ import {
   TwoGraph,
 } from "./components/Graph/Graph";
 const useStyles = makeStyles(theme => ({
-  cellItemBg: {
-    backgroundImage: `url(${cellBg1MobileSVG})`,
-    [theme.breakpoints.up(981)]: {
-      backgroundImage: `url(${cellBg1SVG})`,
-    },
-  },
   hasRLBorder: {
     [theme.breakpoints.up(981)]: {
       borderRight: "1px solid rgba(255, 255, 255, 0.05)",
@@ -75,7 +67,7 @@ const Dashboard = () => {
               <Grid item lg={9} md={9} sm={12} xs={12}>
                 <Grid container spacing={2}>
                   <Grid item lg={12} md={12} sm={12} xs={12}>
-                    <div className={`${classes.cellItemBg} cell-box cell-item1`}>
+                    <div className={`cell-box cell-item1`}>
                       <Grid container spacing={0}>
                         <Grid item lg={4} md={4} sm={12} xs={12}>
                           <div className="cell-sub-item">

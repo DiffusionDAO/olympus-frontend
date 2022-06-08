@@ -239,6 +239,7 @@ function DiffusionChart({
   },
   menuItemData,
   lineType = "monotone", //折线的类型，圆弧或者直线折叠
+  headerSuElement, // 副标题元素组件
 }: {
   type: string;
   data: any[];
@@ -258,6 +259,7 @@ function DiffusionChart({
   margin?: CategoricalChartProps["margin"];
   menuItemData: MenuItemObj[];
   lineType: LineType;
+  headerSuElement?: HTMLDivElement;
 }) {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(true);

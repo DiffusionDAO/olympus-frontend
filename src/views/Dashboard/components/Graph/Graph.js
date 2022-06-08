@@ -1,3 +1,5 @@
+import { t } from "@lingui/macro";
+import { Box, Typography } from "@material-ui/core";
 import { useTheme } from "@material-ui/core/styles";
 import DiffusionChart from "src/components/Chart/DiffusionChart";
 import { formatCurrency, trim } from "src/helpers";
@@ -20,6 +22,22 @@ const menuItemData = [
 
 export const OneGraph = () => {
   const theme = useTheme();
+  const headerSuElement = () => {
+    return (
+      <Box display="flex">
+        <Typography
+          variant="h6"
+          className="card-sub-title-fixation-text"
+          style={{ fontWeight: 400, color: "#ABB6FF", fontSize: "14px" }}
+        >
+          {t`Today`}
+        </Typography>
+        <Typography variant="h5" style={{ fontWeight: "bold", marginRight: 5, color: "#fff", fontSize: "20px" }}>
+          {`${dashboardData && formatCurrency(dashboardData[0].tvl)}`}
+        </Typography>
+      </Box>
+    );
+  };
   return (
     <DiffusionChart
       type="bar"
@@ -34,6 +52,7 @@ export const OneGraph = () => {
       infoTooltipMessage={tooltipInfoMessages().tvl}
       expandedGraphStrokeColor={theme.palette.graphStrokeColor}
       headerSubText={`${dashboardData && formatCurrency(dashboardData[0].tvl)}`}
+      headerSuElement={headerSuElement}
     />
   );
 };
