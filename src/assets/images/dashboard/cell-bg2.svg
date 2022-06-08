@@ -11,9 +11,9 @@
             <stop stop-color="#C64CFF" stop-opacity="0" offset="100%"></stop>
         </radialGradient>
     </defs>
-    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.45">
-        <g id="Dashboard" transform="translate(-246.000000, -386.000000)">
-            <g id="编组-9" transform="translate(570.000000, 446.000000)">
+    <g id="dashboard" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.45">
+        <g id="w-Dashboard" transform="translate(10.000000, -432.000000)">
+            <g id="编组-9" transform="translate(314.000000, 492.000000)">
                 <g id="编组-11" transform="translate(-324.000000, -60.000000)">
                     <circle id="椭圆形" fill="url(#radialGradient-1)" cx="192" cy="192" r="192"></circle>
                     <circle id="椭圆形" fill="url(#radialGradient-2)" cx="1012" cy="192" r="192"></circle>

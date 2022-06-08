@@ -141,6 +141,7 @@ export const FiveGraph = () => {
       margin={{ left: 30 }}
       infoTooltipMessage={tooltipInfoMessages().five}
       expandedGraphStrokeColor={theme.palette.graphStrokeColor}
+      minHeight={150}
     />
   );
 };
@@ -164,6 +165,7 @@ export const SixGraph = () => {
       margin={{ left: 30 }}
       infoTooltipMessage={tooltipInfoMessages().six}
       expandedGraphStrokeColor={theme.palette.graphStrokeColor}
+      minHeight={150}
     />
   );
 };
@@ -187,6 +189,7 @@ export const SevenGraph = () => {
       margin={{ left: 30 }}
       infoTooltipMessage={tooltipInfoMessages().seven}
       expandedGraphStrokeColor={theme.palette.graphStrokeColor}
+      minHeight={150}
     />
   );
 };

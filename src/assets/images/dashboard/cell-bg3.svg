@@ -1,23 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="2908px" height="2715px" viewBox="0 0 2908 2715" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>编组 23</title>
+<svg width="1204px" height="384px" viewBox="0 0 1204 384" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>编组 11</title>
     <defs>
-        <radialGradient cx="48.4518769%" cy="50%" fx="48.4518769%" fy="50%" r="47.5545219%" id="radialGradient-1">
-            <stop stop-color="#2500D3" offset="0%"></stop>
-            <stop stop-color="#3A00D3" stop-opacity="0" offset="100%"></stop>
+        <radialGradient cx="50%" cy="50%" fx="50%" fy="50%" r="50%" id="radialGradient-1">
+            <stop stop-color="#0017FF" offset="0.956075175%"></stop>
+            <stop stop-color="#0017FF" stop-opacity="0" offset="100%"></stop>
         </radialGradient>
-        <radialGradient cx="48.4518769%" cy="50%" fx="48.4518769%" fy="50%" r="48.4518769%" id="radialGradient-2">
-            <stop stop-color="#2200D3" offset="0%"></stop>
-            <stop stop-color="#2200D3" stop-opacity="0" offset="100%"></stop>
+        <radialGradient cx="50%" cy="50%" fx="50%" fy="50%" r="50%" id="radialGradient-2">
+            <stop stop-color="#C64CFF" offset="0%"></stop>
+            <stop stop-color="#C64CFF" stop-opacity="0" offset="100%"></stop>
         </radialGradient>
     </defs>
-    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Dashboard" transform="translate(731.000000, 844.000000)" fill-rule="nonzero">
-            <g id="编组-3" transform="translate(-952.000000, -844.000000)">
-                <g id="编组-23" transform="translate(221.500000, 0.000000)">
-                    <circle id="椭圆形" fill="url(#radialGradient-1)" opacity="0.601934524" cx="762.5" cy="762.5" r="762.5"></circle>
-                    <circle id="椭圆形" fill="url(#radialGradient-2)" opacity="0.384440104" cx="2080.5" cy="877" r="667"></circle>
-                    <circle id="椭圆形" fill="url(#radialGradient-2)" opacity="0.326264881" cx="2057.5" cy="1865" r="850"></circle>
+    <g id="dashboard" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.45">
+        <g id="w-Dashboard" transform="translate(10.000000, -432.000000)">
+            <g id="编组-9" transform="translate(314.000000, 492.000000)">
+                <g id="编组-11" transform="translate(-324.000000, -60.000000)">
+                    <circle id="椭圆形" fill="url(#radialGradient-1)" cx="192" cy="192" r="192"></circle>
+                    <circle id="椭圆形" fill="url(#radialGradient-2)" cx="1012" cy="192" r="192"></circle>
                 </g>
             </g>
         </g>

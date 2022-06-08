@@ -240,6 +240,7 @@ function DiffusionChart({
   menuItemData,
   lineType = "monotone", //折线的类型，圆弧或者直线折叠
   headerSuElement, // 副标题元素组件
+  minHeight = 260, // echarts最小高度
 }: {
   type: string;
   data: any[];
@@ -260,6 +261,7 @@ function DiffusionChart({
   menuItemData: MenuItemObj[];
   lineType: LineType;
   headerSuElement?: HTMLDivElement;
+  minHeight: number;
 }) {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -412,9 +414,9 @@ function DiffusionChart({
           </Box>
         )}
       </div>
-      <Box width="100%" minHeight={260} minWidth={310} className="ohm-chart">
+      <Box width="100%" minWidth={310} className="ohm-chart">
         {loading || (data && data.length > 0) ? (
-          <ResponsiveContainer minHeight={260} width="100%">
+          <ResponsiveContainer minHeight={minHeight} width="100%">
             {renderChart(type, true)}
           </ResponsiveContainer>
         ) : (
