@@ -23,7 +23,7 @@ import FullscreenPng from "src/assets/icons/fullscreen.png";
 import { formatCurrency, trim } from "src/helpers";
 
 import CustomDiffusionTooltip from "./CustomDiffusionTooltip";
-import ExpandedChart from "./ExpandedChart";
+import DiffusionExpandedChart from "./DiffusionExpandedChart";
 
 const tickCount = 3;
 const expandedTickCount = 5;
@@ -32,6 +32,9 @@ const expandedTickCount = 5;
 const renderExpandedChartStroke = (isExpanded: boolean, color: string) => {
   return isExpanded ? <CartesianGrid vertical={false} stroke={color} /> : "";
 };
+
+// 注意事项
+// 在多个charts的dataKey重复时,会导致渐变fill属性失效
 
 interface MenuItemObj {
   label: string;
@@ -67,12 +70,13 @@ const renderAreaChart = (
 ) => (
   <AreaChart data={data} margin={margin}>
     <defs>
-      {dataKey.map((item: string, index: number) => (
-        <linearGradient id={`color-${item}`} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="5%" stopColor={stopColor[index][0]} stopOpacity={0.8} />
-          <stop offset="95%" stopColor={stopColor[index][1]} stopOpacity={0} />
-        </linearGradient>
-      ))}
+      {stopColor &&
+        stopColor.map((item: string[], index: number) => (
+          <linearGradient id={`color-${dataKey[index]}`} x1="0" y1="0" x2="0" y2="1">
+            <stop offset="5%" stopColor={item[0]} stopOpacity={0.8} />
+            <stop offset="95%" stopColor={item[1]} stopOpacity={0} />
+          </linearGradient>
+        ))}
     </defs>
     <XAxis dataKey="timestamp" padding={{ right: 20 }} />
     <YAxis
@@ -97,13 +101,12 @@ const renderAreaChart = (
       }
     />
     {dataKey.map((item: string, index: number) => (
-      // fillOpacity只有当有一个dataKey时，值才生效
       <Area
         type={lineType}
         dataKey={item}
         stroke={stroke && stroke[index] ? stroke[index] : "none"}
-        fill={stroke && stroke[index] ? stroke[index] : "none"}
-        fillOpacity={0.1}
+        fill={stopColor && stopColor.length ? `url(#color-${dataKey[index]})` : stroke[index]}
+        fillOpacity={1}
       />
     ))}
     {renderExpandedChartStroke(isExpanded, expandedGraphStrokeColor)}
@@ -151,6 +154,7 @@ const renderMultiLineChart = (
 const renderBarChart = (
   data: any[],
   dataKey: string[],
+  stopColor: string[][],
   stroke: string[],
   dataFormat: string,
   bulletpointColors: CSSProperties[],
@@ -161,6 +165,15 @@ const renderBarChart = (
   margin: CategoricalChartProps["margin"],
 ) => (
   <BarChart data={data} margin={margin}>
+    <defs>
+      {stopColor &&
+        stopColor.map((item: string[], index: number) => (
+          <linearGradient id={`color-${dataKey[index]}`} x1="0" y1="0" x2="0" y2="1">
+            <stop offset="5%" stopColor={item[0]} stopOpacity={0.8} />
+            <stop offset="95%" stopColor={item[1]} stopOpacity={0} />
+          </linearGradient>
+        ))}
+    </defs>
     <XAxis dataKey="timestamp" padding={{ right: 20 }} />
     <YAxis
       axisLine={false}
@@ -176,7 +189,14 @@ const renderBarChart = (
         <CustomDiffusionTooltip bulletpointColors={bulletpointColors} itemNames={itemNames} itemType={itemType} />
       }
     />
-    <Bar dataKey={dataKey[0]} fill={stroke[0]} radius={4} maxBarSize={18} />
+    {dataKey.map((item: string, index: number) => (
+      <Bar
+        dataKey={dataKey[0]}
+        radius={4}
+        maxBarSize={18}
+        fill={stopColor && stopColor.length ? `url(#color-${dataKey[index]})` : stroke[index]}
+      />
+    ))}
     {renderExpandedChartStroke(isExpanded, expandedGraphStrokeColor)}
   </BarChart>
 );
@@ -184,6 +204,7 @@ const renderBarChart = (
 const renderVerticalBarChart = (
   data: any[],
   dataKey: string[],
+  stopColor: string[][],
   stroke: string[],
   dataFormat: string,
   bulletpointColors: CSSProperties[],
@@ -194,6 +215,18 @@ const renderVerticalBarChart = (
   margin: CategoricalChartProps["margin"],
 ) => (
   <BarChart data={data} margin={margin} layout="vertical">
+    <defs>
+      {stopColor &&
+        stopColor.map((item: string[], index: number) => (
+          // 渐变遵循svg的设置
+          // 当y1和y2相等，x1和x2不同时，创建水平渐变
+          // 当x1和x2相等，y1和y2不同时，创建垂直渐变
+          <linearGradient id={`color-${dataKey[index]}`} x1="0" y1="0" x2="1" y2="0">
+            <stop offset="5%" stopColor={item[0]} stopOpacity={1} />
+            <stop offset="95%" stopColor={item[1]} stopOpacity={1} />
+          </linearGradient>
+        ))}
+    </defs>
     <XAxis type="number" axisLine={false} tickLine={false} />
     <YAxis dataKey="timestamp" type="category" scale="band" axisLine={false} tickLine={false} />
     <Tooltip
@@ -201,17 +234,22 @@ const renderVerticalBarChart = (
         <CustomDiffusionTooltip bulletpointColors={bulletpointColors} itemNames={itemNames} itemType={itemType} />
       }
     />
-    <Bar
-      dataKey={dataKey[0]}
-      fill={stroke[0]}
-      radius={5}
-      maxBarSize={10}
-      background={{
-        radius: 5,
-        fill: "rgba(171, 182, 255, 0.1)",
-      }}
-      label={{ fill: "#fff", fontSize: 12, position: "right" }}
-    />
+    {dataKey.map((item: string, index: number) => (
+      <Bar
+        dataKey={item}
+        fillOpacity={1}
+        fill={stopColor && stopColor.length ? `url(#color-${dataKey[index]})` : stroke[index]}
+        radius={5}
+        maxBarSize={10}
+        // 柱状图背景色设置
+        background={{
+          radius: 5,
+          fill: "rgba(171, 182, 255, 0.1)",
+        }}
+        // 柱状图文字配置
+        label={{ fill: "#fff", fontSize: 12, position: "right" }}
+      />
+    ))}
   </BarChart>
 );
 
@@ -239,7 +277,7 @@ function DiffusionChart({
   },
   menuItemData,
   lineType = "monotone", //折线的类型，圆弧或者直线折叠
-  headerSuElement, // 副标题元素组件
+  HeaderSuElement, // 副标题元素组件
   minHeight = 260, // echarts最小高度
 }: {
   type: string;
@@ -260,7 +298,7 @@ function DiffusionChart({
   margin?: CategoricalChartProps["margin"];
   menuItemData: MenuItemObj[];
   lineType: LineType;
-  headerSuElement?: HTMLDivElement;
+  HeaderSuElement?: JSX.IntrinsicElements;
   minHeight: number;
 }) {
   const [open, setOpen] = useState(false);
@@ -309,6 +347,7 @@ function DiffusionChart({
       return renderBarChart(
         data,
         dataKey,
+        stopColor,
         stroke,
         dataFormat,
         bulletpointColors,
@@ -322,6 +361,7 @@ function DiffusionChart({
       return renderVerticalBarChart(
         data,
         dataKey,
+        stopColor,
         stroke,
         dataFormat,
         bulletpointColors,
@@ -387,7 +427,7 @@ function DiffusionChart({
             </div>
           </Box>
 
-          <ExpandedChart
+          <DiffusionExpandedChart
             open={open}
             handleClose={handleClose}
             renderChart={renderChart(type, true)}
@@ -395,12 +435,15 @@ function DiffusionChart({
             infoTooltipMessage={infoTooltipMessage}
             headerText={headerText}
             headerSubText={headerSubText}
+            HeaderSuElement={HeaderSuElement}
           />
         </Box>
         {loading ? (
           <Skeleton variant="text" width={100} />
+        ) : HeaderSuElement ? (
+          HeaderSuElement
         ) : (
-          <Box display="flex">
+          <Box display="flex" alignItems="center">
             <Typography
               variant="h6"
               className="card-sub-title-fixation-text"

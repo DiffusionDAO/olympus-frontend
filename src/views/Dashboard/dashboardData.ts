@@ -52,7 +52,7 @@ query {
 
 // tootip样式配置
 export const bulletpoints = {
-  tvl: [
+  one: [
     {
       right: 20,
       top: -12,
@@ -251,9 +251,9 @@ export const bulletpoints = {
   ],
 };
 
-//tooltip文字
+//悬浮charts后的文字显示
 export const tooltipItems = {
-  tvl: [t`Tvl`],
+  one: [t`Tvl`],
   two: [t`Tvl`],
   three: ["DAI", "FRAX"],
   four: [t`Tvl`],
@@ -277,19 +277,19 @@ export const tooltipItems = {
 // 数据字段
 export const dataKey = () => {
   return {
-    tvl: ["tvl"],
-    two: ["treasuryDaiMarketValue"],
-    three: ["treasuryDaiMarketValue", "treasuryFraxMarketValue"],
-    four: ["treasuryDaiMarketValue"],
-    five: ["treasuryDaiMarketValue"],
-    six: ["treasuryDaiMarketValue"],
-    seven: ["treasuryDaiMarketValue"],
-    eight: ["treasuryDaiMarketValue", "treasuryFraxMarketValue"],
-    nine: ["treasuryDaiMarketValue"],
-    ten: ["treasuryDaiMarketValue"],
-    eleven: ["treasuryDaiMarketValue"],
-    twelve: ["treasuryDaiMarketValue"],
-    thirteen: ["treasuryDaiMarketValue"],
+    one: ["one"],
+    two: ["two"],
+    three: ["three1", "three2"],
+    four: ["four"],
+    five: ["five"],
+    six: ["six"],
+    seven: ["seven"],
+    eight: ["eight1", "eight2"],
+    nine: ["nine"],
+    ten: ["ten"],
+    eleven: ["eleven"],
+    twelve: ["twelve"],
+    thirteen: ["thirteen"],
     coin: ["treasuryDaiMarketValue", "treasuryFraxMarketValue"],
     runway: ["runwayCurrent"],
   };
@@ -297,7 +297,7 @@ export const dataKey = () => {
 
 export const headerText = () => {
   return {
-    tvl: t`TVL`,
+    one: t`TVL`,
     two: t`TVL`,
     three: t`TVL`,
     four: t`TVL`,
@@ -317,7 +317,7 @@ export const headerText = () => {
 
 export const tooltipInfoMessages = () => {
   return {
-    tvl: t`Total Value Deposited, is the dollar amount of all OHM staked in the protocol. This metric is often used as growth or health indicator in DeFi projects.`,
+    one: t`Total Value Deposited, is the dollar amount of all OHM staked in the protocol. This metric is often used as growth or health indicator in DeFi projects.`,
     two: t`Total Value Deposited, is the dollar amount of all OHM staked in the protocol. This metric is often used as growth or health indicator in DeFi projects.`,
     three: t`Total Value Deposited, is the dollar amount of all OHM staked in the protocol. This metric is often used as growth or health indicator in DeFi projects.`,
     four: t`Total Value Deposited, is the dollar amount of all OHM staked in the protocol. This metric is often used as growth or health indicator in DeFi projects.`,

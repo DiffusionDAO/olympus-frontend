@@ -1,72 +1,24 @@
-export const dashboardData = [
-  {
-    timestamp: "1",
-    tvl: 1,
-    treasuryDaiMarketValue: 1,
-    treasuryFraxMarketValue: 2,
-    runwayCurrent: 1,
-  },
-  {
-    timestamp: "2",
-    tvl: 2,
-    treasuryDaiMarketValue: 2,
-    treasuryFraxMarketValue: 3,
-    runwayCurrent: 2,
-  },
-  {
-    timestamp: "3",
-    tvl: 3,
-    treasuryDaiMarketValue: 3,
-    treasuryFraxMarketValue: 4,
-    runwayCurrent: 2.5,
-  },
-  {
-    timestamp: "4",
-    tvl: 4,
-    treasuryDaiMarketValue: 1,
-    treasuryFraxMarketValue: 2,
-    runwayCurrent: 3,
-  },
-  {
-    timestamp: "5",
-    tvl: 5,
-    treasuryDaiMarketValue: 1,
-    treasuryFraxMarketValue: 5,
-    runwayCurrent: 4,
-  },
-  {
-    timestamp: "6",
-    tvl: 6,
-    treasuryDaiMarketValue: 3,
-    treasuryFraxMarketValue: 6,
-    runwayCurrent: 4.3,
-  },
-  {
-    timestamp: "7",
-    tvl: 7,
-    treasuryDaiMarketValue: 1,
-    treasuryFraxMarketValue: 2,
-    runwayCurrent: 5,
-  },
-  {
-    timestamp: "8",
-    tvl: 8,
-    treasuryDaiMarketValue: 5,
-    treasuryFraxMarketValue: 2,
-    runwayCurrent: 6,
-  },
-  {
-    timestamp: "9",
-    tvl: 9,
-    treasuryDaiMarketValue: 3,
-    treasuryFraxMarketValue: 4,
-    runwayCurrent: 7,
-  },
-  {
-    timestamp: "10",
-    tvl: 10,
-    treasuryDaiMarketValue: 1,
-    treasuryFraxMarketValue: 2,
-    runwayCurrent: 7.1,
-  },
-];
+import Mock from "mockjs";
+export const data = Mock.mock({
+  // 属性 list 的值是一个数组，其中含有 1 到 10 个元素
+  "dashboardData|5-20": [
+    {
+      "timestamp|1-100": 1,
+      "one|1-100": 1,
+      "two|1-100": 2,
+      "three1|1-100": 3,
+      "three2|1-100": 3,
+      "four|1-100": 4,
+      "five|1-100": 1,
+      "six|1-100": 1,
+      "seven|1-100": 1,
+      "eight1|1-100": 1,
+      "eight2|1-100": 1,
+      "nine|1-100": 1,
+      "ten|1-100": 1,
+      "eleven|1-100": 1,
+      "twelve|1-100": 1,
+      "thirteen|1-100": 1,
+    },
+  ],
+});

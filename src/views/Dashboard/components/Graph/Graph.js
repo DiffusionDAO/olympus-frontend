@@ -1,14 +1,17 @@
 import { t } from "@lingui/macro";
-import { Box, Typography } from "@material-ui/core";
+import { Box, LinearProgress, Typography } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 import { useTheme } from "@material-ui/core/styles";
 import DiffusionChart from "src/components/Chart/DiffusionChart";
 import { formatCurrency, trim } from "src/helpers";
 import { useProtocolMetrics } from "src/hooks/useProtocolMetrics";
 
 import { bulletpoints, dataKey, headerText, itemType, tooltipInfoMessages, tooltipItems } from "../../dashboardData";
-import { dashboardData } from "./MockData";
+import { data } from "./MockData";
 
 export const Graph = ({ children }) => <>{children}</>;
+
+const { dashboardData } = data;
 
 const menuItemData = [
   { label: "24h", value: "24h" },
@@ -22,37 +25,20 @@ const menuItemData = [
 
 export const OneGraph = () => {
   const theme = useTheme();
-  const headerSuElement = () => {
-    return (
-      <Box display="flex">
-        <Typography
-          variant="h6"
-          className="card-sub-title-fixation-text"
-          style={{ fontWeight: 400, color: "#ABB6FF", fontSize: "14px" }}
-        >
-          {t`Today`}
-        </Typography>
-        <Typography variant="h5" style={{ fontWeight: "bold", marginRight: 5, color: "#fff", fontSize: "20px" }}>
-          {`${dashboardData && formatCurrency(dashboardData[0].tvl)}`}
-        </Typography>
-      </Box>
-    );
-  };
   return (
     <DiffusionChart
       type="bar"
       data={dashboardData}
       menuItemData={menuItemData}
       itemType={itemType.dollar}
-      itemNames={tooltipItems.tvl}
-      dataKey={dataKey().tvl}
-      headerText={headerText().tvl}
+      itemNames={tooltipItems.one}
+      dataKey={dataKey().one}
+      headerText={headerText().one}
       stroke={["#0031FF"]}
-      bulletpointColors={bulletpoints.tvl}
-      infoTooltipMessage={tooltipInfoMessages().tvl}
+      bulletpointColors={bulletpoints.one}
+      infoTooltipMessage={tooltipInfoMessages().one}
       expandedGraphStrokeColor={theme.palette.graphStrokeColor}
-      headerSubText={`${dashboardData && formatCurrency(dashboardData[0].tvl)}`}
-      headerSuElement={headerSuElement}
+      headerSubText={`${dashboardData && formatCurrency(dashboardData[0].one)}`}
     />
   );
 };
@@ -67,7 +53,7 @@ export const TwoGraph = () => {
       stopColor={[["#3D72FD", "#3D72FD"]]}
       stroke={["#3D72FD"]}
       headerText={headerText().two}
-      headerSubText={`${dashboardData && formatCurrency(dashboardData[0].treasuryDaiMarketValue)}`}
+      headerSubText={`${dashboardData && formatCurrency(dashboardData[0].two)}`}
       bulletpointColors={bulletpoints.two}
       itemNames={tooltipItems.two}
       itemType={itemType.dollar}
@@ -80,6 +66,26 @@ export const TwoGraph = () => {
 // 第三个指标图
 export const ThreeGraph = () => {
   const theme = useTheme();
+  const HeaderSuElement = () => {
+    return (
+      <Box display="flex">
+        {tooltipItems.three.map(item => (
+          <Box display="flex" alignItems="center" marginRight="20px">
+            <Typography
+              variant="h6"
+              className="card-sub-title-fixation-text"
+              style={{ fontWeight: 400, color: "#ABB6FF", fontSize: "14px" }}
+            >
+              {item}
+            </Typography>
+            <Typography variant="h5" style={{ fontWeight: "bold", marginRight: 5, color: "#fff", fontSize: "20px" }}>
+              {`${dashboardData && formatCurrency(dashboardData[0].one)}`}
+            </Typography>
+          </Box>
+        ))}
+      </Box>
+    );
+  };
   return (
     <DiffusionChart
       type="area"
@@ -92,12 +98,13 @@ export const ThreeGraph = () => {
       ]}
       stroke={["#3D72FD", "#F200FF"]}
       headerText={headerText().three}
-      headerSubText={`${dashboardData && formatCurrency(dashboardData[0].treasuryDaiMarketValue)}`}
+      headerSubText={`${dashboardData && formatCurrency(dashboardData[0].three1)}`}
       bulletpointColors={bulletpoints.three}
       itemNames={tooltipItems.three}
       itemType={itemType.dollar}
       infoTooltipMessage={tooltipInfoMessages().three}
       expandedGraphStrokeColor={theme.palette.graphStrokeColor}
+      HeaderSuElement={<HeaderSuElement />}
     />
   );
 };
@@ -117,7 +124,7 @@ export const FourGraph = () => {
       bulletpointColors={bulletpoints.four}
       infoTooltipMessage={tooltipInfoMessages().four}
       expandedGraphStrokeColor={theme.palette.graphStrokeColor}
-      headerSubText={`${dashboardData && formatCurrency(dashboardData[0].tvl)}`}
+      headerSubText={`${dashboardData && formatCurrency(dashboardData[0].four)}`}
     />
   );
 };
@@ -132,8 +139,8 @@ export const FiveGraph = () => {
       data={dashboardData}
       dataKey={dataKey().five}
       stroke={["#26E6C5"]}
-      headerText={headerText().tvl}
-      headerSubText={`${data && trim(data[0].runwayCurrent, 1)} Days`}
+      headerText={headerText().five}
+      headerSubText={`${data && trim(data[0].five, 1)} Days`}
       dataFormat="days"
       bulletpointColors={bulletpoints.five}
       itemNames={tooltipItems.five}
@@ -157,7 +164,7 @@ export const SixGraph = () => {
       dataKey={dataKey().six}
       stroke={["#EC6EFF"]}
       headerText={headerText().six}
-      headerSubText={`${data && trim(data[0].runwayCurrent, 1)} Days`}
+      headerSubText={`${dashboardData && trim(dashboardData[0].six, 1)} Days`}
       dataFormat="days"
       bulletpointColors={bulletpoints.six}
       itemNames={tooltipItems.six}
@@ -181,7 +188,7 @@ export const SevenGraph = () => {
       dataKey={dataKey().seven}
       stroke={["#DF741A"]}
       headerText={headerText().seven}
-      headerSubText={`${data && trim(data[0].runwayCurrent, 1)} Days`}
+      headerSubText={`${dashboardData && trim(dashboardData[0].seven, 1)} Days`}
       dataFormat="days"
       bulletpointColors={bulletpoints.seven}
       itemNames={tooltipItems.seven}
@@ -197,6 +204,26 @@ export const SevenGraph = () => {
 // 第8个指标图
 export const EightGraph = () => {
   const theme = useTheme();
+  const HeaderSuElement = () => {
+    return (
+      <Box display="flex">
+        {tooltipItems.three.map(item => (
+          <Box display="flex" alignItems="center" marginRight="20px">
+            <Typography
+              variant="h6"
+              className="card-sub-title-fixation-text"
+              style={{ fontWeight: 400, color: "#ABB6FF", fontSize: "14px" }}
+            >
+              {item}
+            </Typography>
+            <Typography variant="h5" style={{ fontWeight: "bold", marginRight: 5, color: "#fff", fontSize: "20px" }}>
+              {`${dashboardData && formatCurrency(dashboardData[0].one)}`}
+            </Typography>
+          </Box>
+        ))}
+      </Box>
+    );
+  };
   return (
     <DiffusionChart
       type="area"
@@ -210,22 +237,52 @@ export const EightGraph = () => {
       stroke={["#3D72FD", "#F200FF"]}
       lineType="linear"
       headerText={headerText().eight}
-      headerSubText={`${dashboardData && formatCurrency(dashboardData[0].treasuryDaiMarketValue)}`}
+      headerSubText={`${dashboardData && formatCurrency(dashboardData[0].eight1)}`}
       bulletpointColors={bulletpoints.eight}
       itemNames={tooltipItems.eight}
       itemType={itemType.dollar}
       infoTooltipMessage={tooltipInfoMessages().eight}
       expandedGraphStrokeColor={theme.palette.graphStrokeColor}
+      HeaderSuElement={<HeaderSuElement />}
     />
   );
 };
 // 第9个指标图
 export const NineGraph = () => {
   const theme = useTheme();
+  const useStyles = makeStyles({
+    root: {
+      height: 10,
+      borderRadius: 5,
+    },
+    bar: {
+      borderRadius: 5,
+      background: `linear-gradient(228deg, #F576FF 0%, #7200FF 50%, #3900FF 100%)`,
+    },
+  });
+  const classes = useStyles();
+  const HeaderSuElement = () => {
+    return (
+      <Box display="flex" alignItems="center">
+        <Typography
+          variant="h6"
+          className="card-sub-title-fixation-text"
+          style={{ fontWeight: 400, color: "#ABB6FF", fontSize: "14px" }}
+        >
+          {t`Today`}
+        </Typography>
+        <Box width="100%" marginRight="10px">
+          <LinearProgress variant="determinate" classes={{ root: classes.root, bar: classes.bar }} value={20} />
+        </Box>
+        <Typography variant="body2" color="textSecondary">{`${20}%`}</Typography>
+      </Box>
+    );
+  };
   return (
     <DiffusionChart
       type="verticalBar"
       data={dashboardData}
+      stopColor={[["#00A1FF", "#26E6C5"]]}
       menuItemData={menuItemData}
       itemType={itemType.dollar}
       itemNames={tooltipItems.nine}
@@ -235,7 +292,8 @@ export const NineGraph = () => {
       bulletpointColors={bulletpoints.nine}
       infoTooltipMessage={tooltipInfoMessages().nine}
       expandedGraphStrokeColor={theme.palette.graphStrokeColor}
-      headerSubText={`${dashboardData && formatCurrency(dashboardData[0].tvl)}`}
+      headerSubText={`${dashboardData && formatCurrency(dashboardData[0].nine)}`}
+      HeaderSuElement={<HeaderSuElement />}
     />
   );
 };
@@ -253,7 +311,7 @@ export const TenGraph = () => {
       stroke={["#DF741A"]}
       lineType="linear"
       headerText={headerText().ten}
-      headerSubText={`${data && trim(data[0].runwayCurrent, 1)} Days`}
+      headerSubText={`${dashboardData && trim(dashboardData[0].ten, 1)} Days`}
       dataFormat="days"
       bulletpointColors={bulletpoints.ten}
       itemNames={tooltipItems.ten}
@@ -277,7 +335,7 @@ export const ElevenGraph = () => {
       stopColor={[["#FB0158", "#FB0158"]]}
       stroke={["#FB0158"]}
       headerText={headerText().eleven}
-      headerSubText={`${dashboardData && formatCurrency(dashboardData[0].treasuryDaiMarketValue)}`}
+      headerSubText={`${dashboardData && formatCurrency(dashboardData[0].eleven)}`}
       bulletpointColors={bulletpoints.eleven}
       itemNames={tooltipItems.eleven}
       itemType={itemType.dollar}
@@ -299,7 +357,7 @@ export const TwelveGraph = () => {
       stopColor={[["#DF741A", "#DF741A"]]}
       stroke={["#DF741A"]}
       headerText={headerText().twelve}
-      headerSubText={`${dashboardData && formatCurrency(dashboardData[0].treasuryDaiMarketValue)}`}
+      headerSubText={`${dashboardData && formatCurrency(dashboardData[0].twelve)}`}
       bulletpointColors={bulletpoints.twelve}
       itemNames={tooltipItems.twelve}
       itemType={itemType.dollar}
@@ -321,7 +379,7 @@ export const ThirteenGraph = () => {
       stopColor={[["#1C6CFF", "#1C6CFF"]]}
       stroke={["#1C6CFF"]}
       headerText={headerText().thirteen}
-      headerSubText={`${dashboardData && formatCurrency(dashboardData[0].treasuryDaiMarketValue)}`}
+      headerSubText={`${dashboardData && formatCurrency(dashboardData[0].thirteen)}`}
       bulletpointColors={bulletpoints.thirteen}
       itemNames={tooltipItems.thirteen}
       itemType={itemType.dollar}
