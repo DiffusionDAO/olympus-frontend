@@ -140,7 +140,7 @@ export const FiveGraph = () => {
       dataKey={dataKey().five}
       stroke={["#26E6C5"]}
       headerText={headerText().five}
-      headerSubText={`${data && trim(data[0].five, 1)} Days`}
+      headerSubText={`${dashboardData && trim(dashboardData[0].five, 1)} Days`}
       dataFormat="days"
       bulletpointColors={bulletpoints.five}
       itemNames={tooltipItems.five}
