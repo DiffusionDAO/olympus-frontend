@@ -55,7 +55,7 @@ const Dashboard = () => {
     setActiveTab(tab);
   };
   return (
-    <div id="dashboard-view">
+    <div className="dashboard-view">
       <Typography variant="h3" style={{ fontWeight: 700, overflow: "hidden", color: "#fff" }}>
         Dashboard
       </Typography>
