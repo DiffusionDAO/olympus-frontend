@@ -1,7 +1,7 @@
 import "./Dashboard.scss";
 
 import { t } from "@lingui/macro";
-import { Grid, Typography, useMediaQuery } from "@material-ui/core";
+import { CircularProgress, Grid, Typography, useMediaQuery } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { Paper } from "@olympusdao/component-library";
 import { memo, useState } from "react";
@@ -9,13 +9,9 @@ import { memo, useState } from "react";
 import cellBgPNG from "../../assets/images/dashboard/cell-bg4.png";
 import cfPNG from "../../assets/images/dashboard/cf.png";
 import diPNG from "../../assets/images/dashboard/di.png";
-import drSVG from "../../assets/images/dashboard/dr.svg";
-import hsSVG from "../../assets/images/dashboard/hs.svg";
 import rfSVG from "../../assets/images/dashboard/rf.svg";
 import rmSVG from "../../assets/images/dashboard/rm.svg";
 import rzSVG from "../../assets/images/dashboard/rz.svg";
-import tfotdSVG from "../../assets/images/dashboard/tfotd.svg";
-import troiSVG from "../../assets/images/dashboard/troi.svg";
 import tvlSVG from "../../assets/images/dashboard/tvl.svg";
 import { DataCell } from "./components/DataCell/DataCell";
 import {
@@ -33,6 +29,7 @@ import {
   TwelveGraph,
   TwoGraph,
 } from "./components/Graph/Graph";
+import { data } from "./MockData";
 const useStyles = makeStyles(theme => ({
   hasRLBorder: {
     [theme.breakpoints.up(981)]: {
@@ -41,6 +38,8 @@ const useStyles = makeStyles(theme => ({
     },
   },
 }));
+const { one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen, fourteen } =
+  data.OverviewData;
 
 const Dashboard = () => {
   // xs, extra-small: 0px or larger
@@ -89,20 +88,20 @@ const Dashboard = () => {
                       <Grid container spacing={0}>
                         <Grid item lg={4} md={4} sm={12} xs={12}>
                           <div className="cell-sub-item">
-                            <DataCell title="TVL" data="$123.22M" style={{ fontSize: "32px" }} />
+                            <DataCell title="TVL" data={`$${one}M`} style={{ fontSize: "32px" }} />
                             <DataCell title="" data="" imgUrl={tvlSVG} />
                           </div>
                         </Grid>
                         <Grid item lg={4} md={4} sm={12} xs={12}>
                           <div className={`${classes.hasRLBorder} cell-sub-item`}>
-                            <DataCell title="Total circulation" data="$123.22M" />
-                            <DataCell title="Single currency internal savings fund" data="$123.22M" />
+                            <DataCell title="Total circulation" data={`$${two}M`} />
+                            <DataCell title="Single currency internal savings fund" data={`$${three}M`} />
                           </div>
                         </Grid>
                         <Grid item lg={4} md={4} sm={12} xs={12}>
                           <div className="cell-sub-item">
-                            <DataCell title="Reserve fund" data="$123.22M" imgUrl={rfSVG} />
-                            <DataCell title="Reserve fund" data="$123.22M" imgUrl={rmSVG} />
+                            <DataCell title="Reserve fund" data={`$${four}M`} imgUrl={rfSVG} />
+                            <DataCell title="Reserve fund" data={`$${five}M`} imgUrl={rmSVG} />
                           </div>
                         </Grid>
                       </Grid>
@@ -111,7 +110,30 @@ const Dashboard = () => {
                   <Grid item lg={4} md={4} sm={12} xs={12}>
                     <div className="cell-box cell-item2">
                       <div className="has-border cell-sub-item">
-                        <div className="ctir-image">23%</div>
+                        <div className="ctir-image">
+                          <CircularProgress
+                            variant="determinate"
+                            style={{ color: "rgba(171, 182, 255, 0.1)", margin: "auto", width: "100%", height: "100%" }}
+                            size={40}
+                            thickness={4}
+                            value={100}
+                          />
+                          <CircularProgress
+                            variant="determinate"
+                            size={40}
+                            thickness={4}
+                            style={{
+                              color: "#0819ff",
+                              width: "100%",
+                              height: "100%",
+                              position: "absolute",
+                              left: 0,
+                              top: 0,
+                            }}
+                            value={parseInt(six)}
+                          />
+                          <div className="ctir-data">{six}</div>
+                        </div>
                         <div className="ctir-title">Current target inflation rate</div>
                       </div>
                     </div>
@@ -124,12 +146,7 @@ const Dashboard = () => {
                             className="cell-sub-item"
                             style={{ borderBottom: "1px solid rgba(255, 255, 255, 0.05)" }}
                           >
-                            <DataCell
-                              title="Household savings rate"
-                              data="23%"
-                              imgUrl={hsSVG}
-                              imgStyle={{ width: "44px", height: "44px" }}
-                            />
+                            <DataCell title="Household savings rate" data={`${seven}%`} progressColor="#f200ff" />
                           </div>
                         </Grid>
                         <Grid item lg={6} md={6} sm={12} xs={12}>
@@ -137,32 +154,17 @@ const Dashboard = () => {
                             className="cell-sub-item"
                             style={{ borderBottom: "1px solid rgba(255, 255, 255, 0.05)" }}
                           >
-                            <DataCell
-                              title="The fit of the DSGE"
-                              data="23%"
-                              imgUrl={tfotdSVG}
-                              imgStyle={{ width: "44px", height: "44px" }}
-                            />
+                            <DataCell title="The fit of the DSGE" data={`${eight}%`} progressColor="#01ffed" />
                           </div>
                         </Grid>
                         <Grid item lg={6} md={6} sm={12} xs={12}>
                           <div className="cell-sub-item">
-                            <DataCell
-                              title="The rate of inflation"
-                              data="23%"
-                              imgUrl={troiSVG}
-                              imgStyle={{ width: "44px", height: "44px" }}
-                            />
+                            <DataCell title="The rate of inflation" data={`${nine}%`} progressColor="#f5d700" />
                           </div>
                         </Grid>
                         <Grid item lg={6} md={6} sm={12} xs={12}>
                           <div className="cell-sub-item">
-                            <DataCell
-                              title="Debt ratio"
-                              data="23%"
-                              imgUrl={drSVG}
-                              imgStyle={{ width: "44px", height: "44px" }}
-                            />
+                            <DataCell title="Debt ratio" data={`${ten}%`} progressColor="#0131ff" />
                           </div>
                         </Grid>
                       </Grid>
@@ -184,11 +186,11 @@ const Dashboard = () => {
                           <img src={diPNG} style={{ width: "56px", height: "52px" }} />
                         </div>
                         <div className="di-font">Diffusion index</div>
-                        <h3 className="di-content">89</h3>
-                        <DataCell title="Factors of attention" data="23" titleStyle={{ color: "#ABB6FF" }} />
+                        <h3 className="di-content">{eleven}</h3>
+                        <DataCell title="Factors of attention" data={twelve} titleStyle={{ color: "#ABB6FF" }} />
                         <DataCell
                           title="Call fator"
-                          data="43"
+                          data={thirteen}
                           imgUrl={cfPNG}
                           titleStyle={{ color: "#ABB6FF" }}
                           imgStyle={{ height: "85px", width: "54px" }}
@@ -199,7 +201,7 @@ const Dashboard = () => {
                   <Grid item lg={12} md={12} sm={12} xs={12}>
                     <div className="cell-box cell-item5">
                       <div className="cell-sub-item">
-                        <DataCell title="Reserve fund" data="$123.22M" imgUrl={rzSVG} />
+                        <DataCell title="Reserve fund" data={`$${fourteen}M`} imgUrl={rzSVG} />
                       </div>
                     </div>
                   </Grid>

@@ -185,6 +185,7 @@ const renderBarChart = (
       tickFormatter={number => (number !== 0 ? number : "")}
     />
     <Tooltip
+      cursor={{ fill: "rgba(255,255,255,0.1)" }}
       content={
         <CustomDiffusionTooltip bulletpointColors={bulletpointColors} itemNames={itemNames} itemType={itemType} />
       }

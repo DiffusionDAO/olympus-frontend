@@ -7,7 +7,7 @@ import { formatCurrency, trim } from "src/helpers";
 import { useProtocolMetrics } from "src/hooks/useProtocolMetrics";
 
 import { bulletpoints, dataKey, headerText, itemType, tooltipInfoMessages, tooltipItems } from "../../dashboardData";
-import { data } from "./MockData";
+import { data } from "../../MockData";
 
 export const Graph = ({ children }) => <>{children}</>;
 
